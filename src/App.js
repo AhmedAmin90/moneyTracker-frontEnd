@@ -2,7 +2,7 @@ import React , {useState , useEffect} from 'react'
 import './App.css';
 import axios from 'axios';
 import Session from './Session';
-
+import Registration from './Registration';
 function App() {
   const [icons , setIcons] = useState([])
   const [value , setValue ] = useState('')
@@ -48,6 +48,7 @@ function App() {
   return (
     <div className="App">
       <Session />
+      <Registration />
         Start the project
         <button onClick={sendData}>test</button>
         <h1></h1>
