@@ -1,14 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import allReducers from './reducers/index';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Home from './components/Home';
+import Registration from './Registration';
+import Single from './components/Single';
+
+const store = createStore(allReducers,
+  /* eslint-disable-next-line */
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+export default store;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  (<Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" render={() => <App />} />
+        <Route exact path="/" render={() => <Registration />} />
+        <Route exact path="/home/:id" render={(routeProps)=> <Home userData={routeProps}/>} />
+        <Route exact path="/items/:itemId" render={(routeProps) => <Single  itemData={routeProps} />} />
+      </Switch>
+    </BrowserRouter>
+   </Provider>),
+  document.getElementById('root') || document.createElement('div'), // for testing
 );
 
 // If you want to start measuring performance in your app, pass a function

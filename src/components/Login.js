@@ -1,10 +1,8 @@
-import React , {useState , useEffect} from 'react'
-import { useDispatch , useSelector } from 'react-redux';
-import { Redirect } from "react-router-dom";
+import React , {useState } from 'react'
+import { useDispatch } from 'react-redux'
 import * as actions from '../src/actions/index'
 const Session = () => {
-    const dispatch = useDispatch();
-    const userId = useSelector(state => state.userId)
+    const dispatch = useDispatch()
     const [input , setIntpu] = useState({
         username: '',
         password: ''
@@ -20,30 +18,12 @@ const Session = () => {
           method: 'post',
           body: JSON.stringify({ username: input.username, password: input.password}),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        }).then((res) => res.json()).then((res) => {
-            if (res.message) {
-              console.log(res.message)
-              dispatch(actions.error(res))
-            }
-        if (res.id) {
-            dispatch(actions.login(res))
-            dispatch(actions.error(''))
-            console.log(res);
- 
-        }})
-        // const send = await fetch(`https://pacific-mountain-97932.herokuapp.com/sessions`, {
-        //   method: 'post',
-        //   body: JSON.stringify({ username: input.username, password: input.password}),
-        //   headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        // }).then((res) => res.json())
+        }).then((res) => res.json())
+
         console.log(send)
-        // dispatch(actions.login(send))
+        dispatch(actions.login(send))
       }
-
-
-      if (userId) {
-        return <Redirect to={`/home/${userId}`} />;
-      }    
+    
     return (
         
         <div>
