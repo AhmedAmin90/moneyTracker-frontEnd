@@ -42,7 +42,7 @@ const Home = ({userData}) => {
        return () => {
         source.cancel('axios request cancelled');
       };
-     }, [total , axiosRes])
+     }, [])
      
      if (!userId) {
         return <Redirect to="/" />;

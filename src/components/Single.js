@@ -34,7 +34,7 @@ const Single = ({itemData}) => {
         return () => {
             source.cancel('axios request cancelled');
           };
-    },[axiosRes, itemId])
+    },[])
     
     // For sending new Measurment to database:
     const sendData =  ()=> {
