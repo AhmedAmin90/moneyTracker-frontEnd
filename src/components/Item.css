@@ -1,0 +1,17 @@
+.Item {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 200px;
+    margin: 25px;
+    color: #5B8092;
+    font-size: 10px;
+}
+
+.Item > i {
+    color: #42B5E8;
+    font-size: 40px;
+}

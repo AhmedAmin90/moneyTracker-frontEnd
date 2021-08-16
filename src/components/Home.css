@@ -1,0 +1,7 @@
+.Home-items-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 90%;
+    margin: 20px auto;
+}

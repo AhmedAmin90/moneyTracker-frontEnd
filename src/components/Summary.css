@@ -1,0 +1,49 @@
+.Summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FDFDFD;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.Summary-date {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #74879B;
+}
+
+.Summary-total-exp {
+    color: #74879B;
+    font-size: 10px;
+}
+
+.Summary-percentage-circle{
+    border-left: 5px solid #e8e8e8;
+  border-right: 5px solid #97E493;
+  border-bottom: 5px solid #e8e8e8;
+  border-top: 5px solid #97E493;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  align-self: center;
+  position: relative;
+}
+
+.Summary-percentage-circle > p {
+    position: absolute;
+    top: 5px;
+    left: 25px;
+    color: #2D4964;
+    font-size: 20px;
+}
+
+.Summary-percentage-circle > small {
+    position: absolute;
+    top: 50px;
+    left: 25px;
+    font-size: 10px;
+    color: #D1D6DC;
+}
