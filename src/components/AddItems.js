@@ -1,6 +1,8 @@
 import React  , {useState , useEffect}from 'react'
+import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import { useDispatch , useSelector } from 'react-redux';
-import * as actions from '../actions/index'
+import * as actions from '../actions/index';
+
 
 const AddItems = ({userId}) => {
     const dispatch = useDispatch();
@@ -27,10 +29,11 @@ const AddItems = ({userId}) => {
             }
             else {
                 dispatch(actions.items({name: value.item, user_id: userId, icon: value.icons}))
-                dispatch(actions.error(''))
+                dispatch(actions.error(''));
+                document.querySelector('.AddItem-text-input').value = '';
+                setValue(pre=>({...pre, item: ''}))
             }
         })
-        // dispatch(actions.items({name: value.item, user_id: userId, icon: value.icons}))
       }
     
     return (
@@ -103,6 +106,7 @@ const AddItems = ({userId}) => {
                 </div>
             </form>
             <button className="AddItem-btn" onClick={sendData} >Add item</button>
+
         </div>
     )
 }

@@ -1,11 +1,13 @@
 import React , {useState}from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
 import * as actions from '../actions/index'
 import Box from './Box';
 import './Footer.css'
 
 const Footer = () => {
     const dispatch = useDispatch()
+    const contentId = useSelector(state=> state.contentId)
+
     // const userId = useSelector(state=> state.userId)
     const [boxes , setBoxes] = useState([
         {id: 1 , icon:"fas fa-chart-bar", text:"Add Expenses" , clicked: false},
@@ -24,6 +26,8 @@ const Footer = () => {
           });
         setBoxes([...boxes]);
     }
+
+
 
     const renderBoxes = boxes.map(box=> 
         <Box key={box.id} handleClickBox={handleClicke} box={box} clicked={box.clicked}/>)

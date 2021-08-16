@@ -27,7 +27,6 @@ const Home = ({userData}) => {
             cancelToken: source.token,
           });
          const data = await res.data
-        //  console.log(data.items);
          setTotal(data.total)
          if (!userId || itemsList.length !==0) {
             //  Length to avoid rerender dispatching if i back to this page again
@@ -76,18 +75,7 @@ const Home = ({userData}) => {
 
     return (
         <div>
-            {/* <Summary total={total}/> 
-            
-            <div className="Home-items-div">
-            {itemsList.map(item=>(
-
-                <Link key={item.name} to={`/items/${item.id}`}>
-                    <Item key={item.name} item={item} />
-                </Link>
-            ))}
-            </div> */}
             {renderContent()}
-         
             <Footer />
         </div>
     )
