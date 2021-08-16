@@ -2,6 +2,7 @@ import React  , {useState ,  useEffect}from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import { useDispatch , useSelector } from 'react-redux';
+import Measurment from './Measurment';
 // import AddExpenses from './AddExpenses';
 
 const Single = ({itemData}) => {
@@ -42,7 +43,9 @@ const Single = ({itemData}) => {
           body: JSON.stringify({ expense: expense, item_id: itemId}),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
-        setExpenses(pre=> ([...pre, {expense: expense, id: itemId , created_at:`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`} ]))
+        const currentDate = new Date().toISOString()
+
+        setExpenses(pre=> ([...pre, {expense: expense, id: itemId , created_at:currentDate} ]))
 
         // dispatch(actions.items({name: value.item, user_id: userId, icon: value.icons}))
       }
@@ -57,11 +60,10 @@ const Single = ({itemData}) => {
                 <input type="number" min="0"  name="expense" onChange={handleChange} />
             </form>
             <button onClick={sendData}>Add New Expense</button>
-           
-            This is a test {itemId}
 
             {expenses.map((exp , index )=>(
-                <li key={index}> {index} {exp.expense} was in {exp.created_at}</li>
+                <Measurment key={index} expense={exp} />
+                // <li key={index}> {index} {exp.expense} was in {exp.created_at}</li>
             ))}
         
         </div>

@@ -1,5 +1,6 @@
 .Item {
     padding: 20px;
+    background-color: #FDFDFD;
     display: flex;
     justify-content: space-between;
     align-content: center;

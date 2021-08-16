@@ -14,11 +14,16 @@ const Home = ({userData}) => {
     const itemsList = useSelector(state => state.items);
     const selectedId = userData.match.params.id;
     const [total , setTotal] = useState(0)
-
+    const [axiosRes, setAxiosRes] = useState('');
 
     useEffect(() => {
+        const cancelToken = axios.CancelToken;
+        const source = cancelToken.source();
+        setAxiosRes(axiosRes);
         const getData = async ()=>{
-        const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`)
+        const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`, {
+            cancelToken: source.token,
+          });
          const data = await res.data
          console.log(data.items);
          setTotal(data.total)
@@ -33,8 +38,11 @@ const Home = ({userData}) => {
              )) 
         }         
        }
-       getData()
-     }, [])
+       getData();
+       return () => {
+        source.cancel('axios request cancelled');
+      };
+     }, [total , axiosRes])
      
      if (!userId) {
         return <Redirect to="/" />;
@@ -50,10 +58,6 @@ const Home = ({userData}) => {
 
                 <Link key={item.name} to={`/items/${item.id}`}>
                     <Item key={item.name} item={item} />
-                    {/* // <div key={item.name}>
-                    //     <h1>{item.name}</h1>
-                    //     <i className={item.icon}></i>
-                    // </div> */}
                 </Link>
             ))}
             </div>
