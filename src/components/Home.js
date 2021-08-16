@@ -6,6 +6,7 @@ import * as actions from '../actions/index';
 import Summary from './Summary';
 import Item from './Item';
 import axios from 'axios';
+import Footer from './Footer';
 import './Home.css'
 
 const Home = ({userData}) => {
@@ -63,6 +64,7 @@ const Home = ({userData}) => {
             </div>
             <h1>Add New Item</h1>
             <AddItems userId={selectedId} />
+            <Footer  />
         </div>
     )
 }

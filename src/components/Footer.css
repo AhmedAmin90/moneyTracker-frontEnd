@@ -1,0 +1,41 @@
+.Footer {
+    display: flex;
+}
+
+.Footer-box {
+    width: 25%;
+    text-align: center;
+    padding-top: 10px;
+    background-color: #323943;
+    color: #B4B9BF;
+}
+
+.Footer-box > i {
+    font-size: 25px;
+}
+
+.Footer-box-clicked {
+    background-color: #5BB5E5;
+    width: 25%;
+    text-align: center;
+    padding-top: 10px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.Footer-box-clicked > i {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.arrow-hidden-div{
+    margin-top: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 8px solid #F3F4F6;
+}
