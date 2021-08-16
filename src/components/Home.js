@@ -13,8 +13,9 @@ const Home = ({userData}) => {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.userId);
     const itemsList = useSelector(state => state.items);
+    const contentId = useSelector(state=> state.contentId)
     const selectedId = userData.match.params.id;
-    const [total , setTotal] = useState(0)
+    const [total , setTotal] = useState(0);
     const [axiosRes, setAxiosRes] = useState('');
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const Home = ({userData}) => {
             cancelToken: source.token,
           });
          const data = await res.data
-         console.log(data.items);
+        //  console.log(data.items);
          setTotal(data.total)
          if (!userId || itemsList.length !==0) {
             //  Length to avoid rerender dispatching if i back to this page again
@@ -48,11 +49,34 @@ const Home = ({userData}) => {
      if (!userId) {
         return <Redirect to="/" />;
     } 
-  
+
+    const renderContent = ()=> {
+        if (contentId === 2 ) {
+            return <div>
+                <Summary total={total}/> 
+            
+                <div className="Home-items-div">
+                {itemsList.map(item=>(
+    
+                    <Link key={item.name} to={`/items/${item.id}`}>
+                        <Item key={item.name} item={item} />
+                    </Link>
+                ))}
+                </div>
+                </div>
+        }
+        else if (contentId === 3) {
+            return <div>
+                        <Summary total={total}/> 
+                        <h1 className="Home-add-item">Add New Item</h1>
+                        <AddItems userId={selectedId} />    
+                   </div>
+        }
+    }
 
     return (
         <div>
-            <Summary total={total}/> 
+            {/* <Summary total={total}/> 
             
             <div className="Home-items-div">
             {itemsList.map(item=>(
@@ -61,10 +85,10 @@ const Home = ({userData}) => {
                     <Item key={item.name} item={item} />
                 </Link>
             ))}
-            </div>
-            <h1>Add New Item</h1>
-            <AddItems userId={selectedId} />
-            <Footer  />
+            </div> */}
+            {renderContent()}
+         
+            <Footer />
         </div>
     )
 }

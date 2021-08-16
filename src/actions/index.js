@@ -12,3 +12,9 @@ export const items = (items) => ({
     type: 'ITEMS',
     items,
   })
+
+
+export const content = (id) => ({
+  type: 'CONTENT',
+  id,
+})

@@ -1,6 +1,6 @@
 const errorReducer = (state = '', action) => {
     if (action.type === 'ERROR') {
-      console.log(action);
+      console.log(action.message);
       return action.message
     }
     return state;

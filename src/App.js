@@ -3,6 +3,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import './App.css';
 import axios from 'axios';
+import Footer from './components/Footer';
 import Session from './Session';
 import Registration from './Registration';
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <Session />
       <Registration />
+      <Footer />
     </div>
   );
 }

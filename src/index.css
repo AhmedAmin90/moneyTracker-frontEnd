@@ -17,3 +17,7 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
+
+.error-msg {
+  color: red;
+}

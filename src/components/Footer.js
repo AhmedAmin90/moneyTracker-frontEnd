@@ -1,26 +1,28 @@
 import React , {useState}from 'react';
+import { useDispatch } from 'react-redux';
+import * as actions from '../actions/index'
 import Box from './Box';
 import './Footer.css'
 
 const Footer = () => {
-    // const [clicked , setClicked] = useState(false);
+    const dispatch = useDispatch()
+    // const userId = useSelector(state=> state.userId)
     const [boxes , setBoxes] = useState([
         {id: 1 , icon:"fas fa-chart-bar", text:"Add Expenses" , clicked: false},
-        {id: 2 , icon:"fas fa-chart-line", text:"Track Expenses" , clicked: false},
+        {id: 2 , icon:"fas fa-chart-line", text:"Track Expenses" , clicked: true},
         {id: 3 , icon:"fas fa-chart-pie", text:"Add Items" , clicked: false},
         {id: 4 , icon:"fas fa-sign-out-alt", text:"Sign out" , clicked: false},
     ]);
 
     const handleClicke = (id)=> {
-        // setClicked(!clicked);
         let selectedBox = boxes.find((box)=> box.id === id);
-        console.log(boxes , selectedBox)
         selectedBox.clicked = !selectedBox.clicked;
+        dispatch(actions.content(id))
         const otherBoxes = boxes.filter((box) => box.id !== id);
         otherBoxes.forEach((box) => {
             box.clicked = false;
           });
-        setBoxes([...boxes])
+        setBoxes([...boxes]);
     }
 
     const renderBoxes = boxes.map(box=> 

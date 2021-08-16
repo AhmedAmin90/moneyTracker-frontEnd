@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import { useDispatch , useSelector } from 'react-redux';
 import Measurment from './Measurment';
-// import AddExpenses from './AddExpenses';
+import Footer from './Footer';
 
 const Single = ({itemData}) => {
     const itemId = itemData.match.params.itemId;
@@ -46,8 +46,6 @@ const Single = ({itemData}) => {
         const currentDate = new Date().toISOString()
 
         setExpenses(pre=> ([...pre, {expense: expense, id: itemId , created_at:currentDate} ]))
-
-        // dispatch(actions.items({name: value.item, user_id: userId, icon: value.icons}))
       }
     
     if (!userId) {
@@ -63,9 +61,8 @@ const Single = ({itemData}) => {
 
             {expenses.map((exp , index )=>(
                 <Measurment key={index} expense={exp} />
-                // <li key={index}> {index} {exp.expense} was in {exp.created_at}</li>
             ))}
-        
+            <Footer  />
         </div>
     )
 }
