@@ -8,6 +8,7 @@ import Item from './Item';
 import axios from 'axios';
 import Footer from './Footer';
 import './Home.css'
+import Filter from './Filter';
 
 const Home = ({userData}) => {
     const dispatch = useDispatch();
@@ -54,7 +55,11 @@ const Home = ({userData}) => {
     } 
 
     const renderContent = ()=> {
-        if (contentId === 2 ) {
+
+        if (contentId === 1 ) {
+            return <Filter />
+        }
+        else if (contentId === 2 ) {
             return itemsPresence
         }
         else if (contentId === 3) {

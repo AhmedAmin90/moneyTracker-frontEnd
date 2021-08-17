@@ -29,21 +29,19 @@
   width: 75px;
   height: 75px;
   align-self: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .Summary-percentage-circle > p {
-    position: absolute;
-    top: 5px;
-    left: 25px;
+    align-self: center;
     color: #2D4964;
     font-size: 20px;
+    margin-bottom: 0;
 }
 
 .Summary-percentage-circle > small {
-    position: absolute;
-    top: 50px;
-    left: 25px;
+    align-self: center;
     font-size: 10px;
     color: #D1D6DC;
 }

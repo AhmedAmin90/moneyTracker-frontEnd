@@ -16,7 +16,7 @@ const Single = ({itemData}) => {
         setExpense(e.target.value)
     }
     const [expenses , setExpenses] = useState([]);
-    const [itemId, setItemdId] = useState('');
+    const [itemId, setItemId] = useState('');
     const [axiosRes, setAxiosRes] = useState('');
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const Single = ({itemData}) => {
                 // console.log(expArray)  
                 setExpenses(expArray)
                 // console.log(selectedItem) 
-                setItemdId(selectedItem.id);
+                setItemId(selectedItem.id);
                     
         }  
         getData();

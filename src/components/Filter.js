@@ -1,0 +1,62 @@
+import React , {useState, useEffect}from 'react'
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+
+const Filter = () => {
+    const itemsList = useSelector(state => state.items);
+    const userId = useSelector((state) => state.userId);
+
+    const [value , setValue]= useState({
+        item: itemsList[0].name,
+        expense: 0
+    });
+    const [ itemId , setItemId ] = useState('');
+
+    useEffect(() => {
+        const getItemID = async ()=>{
+            const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`);
+            const userItems = await res.data.items
+            console.log(userItems)
+            const selectedItem = userItems.find(item=> item.name === value.item);
+            console.log(selectedItem)
+            setItemId(selectedItem.id);
+            console.log(itemId)
+        } 
+
+        getItemID()
+
+    })
+
+    
+
+
+    const handleChange = (e)=>{
+        setValue(pre => ({...pre , [e.target.name] : e.target.value}));
+
+    }
+
+ 
+    const sendData = async ()=> {
+         fetch(`https://pacific-mountain-97932.herokuapp.com/api/v1/expenses`, {
+          method: 'post',
+          body: JSON.stringify({ expense: value.expense, item_id: itemId}),
+          headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        }).then((res) => res.json()).then((res) => {console.log(res)})
+      }
+    return (
+        <div>
+            <form>
+                test
+                <select name="item"  onChange={handleChange}>
+                    {itemsList.map(item=>(
+                        <option key={item.name}  value={item.name}>{item.name}</option>
+                    ))}
+                </select>
+                <input type="number" min="0"  name="expense" onChange={handleChange} />
+            </form>
+            <button onClick={sendData}>Add New Expense</button>
+        </div>
+    )
+}
+
+export default Filter
