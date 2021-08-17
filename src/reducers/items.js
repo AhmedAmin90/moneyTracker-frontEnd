@@ -5,10 +5,6 @@ const itemsReducer = (state = initial, action) => {
         console.log(action);
         return [...state, action.items]
       }
-    else if (action.type === 'LOGOUT') {
-      console.log(action)
-      return initial
-    }
     return state;
   };
 

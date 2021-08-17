@@ -24,7 +24,7 @@ ReactDOM.render(
         <Route exact path="/" render={() => <App />} />
         <Route exact path="/" render={() => <Registration />} />
         <Route exact path="/home/:id" render={(routeProps)=> <Home userData={routeProps}/>} />
-        <Route exact path="/items/:itemId" render={(routeProps) => <Single  itemData={routeProps} />} />
+        <Route exact path="/items/:itemName" render={(routeProps) => <Single  itemData={routeProps} />} />
       </Switch>
     </BrowserRouter>
    </Provider>),

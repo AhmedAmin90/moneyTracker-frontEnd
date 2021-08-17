@@ -6,7 +6,7 @@ import Measurment from './Measurment';
 import Footer from './Footer';
 
 const Single = ({itemData}) => {
-    const itemId = itemData.match.params.itemId;
+    const itemName = itemData.match.params.itemName;
     const userId = useSelector((state) => state.userId);
     const dispatch = useDispatch();
 
@@ -15,7 +15,8 @@ const Single = ({itemData}) => {
     const handleChange = (e)=> {
         setExpense(e.target.value)
     }
-    const [expenses , setExpenses] = useState([])
+    const [expenses , setExpenses] = useState([]);
+    const [itemId, setItemdId] = useState('');
     const [axiosRes, setAxiosRes] = useState('');
 
     useEffect(() => {
@@ -23,18 +24,25 @@ const Single = ({itemData}) => {
         const source = cancelToken.source();
         setAxiosRes(axiosRes);
         const getData = async ()=>{
-            const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/api/v1/items/${itemId}`, {
-                cancelToken: source.token,
-              });
-            const data = await res.data
-            console.log(data.expenses)
-            setExpenses(data.expenses)
+                const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`, {
+                    cancelToken: source.token,
+                  });
+                const userItems = await res.data.items
+                const expRes = await axios.get('https://pacific-mountain-97932.herokuapp.com/api/v1/expenses');
+                const expData = await expRes.data;
+                const selectedItem = userItems.find(item=> item.name === itemName);
+                const expArray = expData.filter(exp=> exp.item_id === itemId)
+                // console.log(expArray)  
+                setExpenses(expArray)
+                // console.log(selectedItem) 
+                setItemdId(selectedItem.id);
+                    
         }  
         getData();
         return () => {
             source.cancel('axios request cancelled');
           };
-    },[])
+    })
     
     // For sending new Measurment to database:
     const sendData =  ()=> {
@@ -45,7 +53,7 @@ const Single = ({itemData}) => {
         })
         const currentDate = new Date().toISOString()
 
-        setExpenses(pre=> ([...pre, {expense: expense, id: itemId , created_at:currentDate} ]))
+        setExpenses(pre=> ([...pre, {expense: expense, id: itemId  , created_at:currentDate} ]))
       }
     
     if (!userId) {

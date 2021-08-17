@@ -16,6 +16,7 @@ const Home = ({userData}) => {
     const contentId = useSelector(state=> state.contentId)
     const selectedId = userData.match.params.id;
     const [total , setTotal] = useState(0);
+    // const [items , setItems] = useState(0)
     const [axiosRes, setAxiosRes] = useState('');
 
     useEffect(() => {
@@ -23,6 +24,9 @@ const Home = ({userData}) => {
         const source = cancelToken.source();
         setAxiosRes(axiosRes);
         const getData = async ()=>{
+        // const allItems = await axios.get('https://pacific-mountain-97932.herokuapp.com/api/v1/items');
+        // const allItemslength = await allItems.data.length;
+        // setItems(allItemslength + 1 )
         const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`, {
             cancelToken: source.token,
           });
@@ -51,18 +55,7 @@ const Home = ({userData}) => {
 
     const renderContent = ()=> {
         if (contentId === 2 ) {
-            return <div>
-                <Summary total={total}/> 
-            
-                <div className="Home-items-div">
-                {itemsList.map(item=>(
-    
-                    <Link key={item.name} to={`/items/${item.id}`}>
-                        <Item key={item.name} item={item} />
-                    </Link>
-                ))}
-                </div>
-                </div>
+            return itemsPresence
         }
         else if (contentId === 3) {
             return <div>
@@ -76,8 +69,36 @@ const Home = ({userData}) => {
         }
     }
 
+    const instructions = 
+        <div> 
+            <Summary total={total}/> 
+            <h1 className="Home-add-item">Welcome to Money tracker App - Thanks to use our application</h1>
+            <p className="intro-paragraph">In this app , you can add unlimited items to track your expenses in this items.</p>
+            <h1 className="Home-add-item">How To Add Your First Items ?</h1>
+            <ul className="instructions-list">
+                <li> Click on Add items in the footer.</li>
+                <li>Write the name of your item That you need to track your expenses on (food, taxi, travel ...)</li>
+                <li> Select the proper icon which is descriptive to your item. </li>
+                <li> Click on Add item button , that was easy ! Start tracking your expenses!.</li>
+            </ul>
+        </div>
+
+    const renderItems = <div>
+        <Summary total={total}/> 
+    
+        <div className="Home-items-div">
+        {itemsList.map(item=>(
+            <Link key={item.name} to={`/items/${item.name}`}>
+                <Item key={item.name} item={item} />
+            </Link>
+        ))}
+        </div>
+        </div>
+    
+
+    const itemsPresence = itemsList.length > 0 ? renderItems :  instructions
     return (
-        <div>
+        <div className="Home">
             {renderContent()}
             <Footer />
         </div>

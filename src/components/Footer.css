@@ -8,6 +8,7 @@
     padding-top: 10px;
     background-color: #323943;
     color: #B4B9BF;
+    cursor: pointer;
 }
 
 .Footer-box > i {
@@ -23,6 +24,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
+
 
 }
 

@@ -1,3 +1,10 @@
+.Home {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .Home-items-div {
     display: flex;
     flex-wrap: wrap;
@@ -8,7 +15,7 @@
 
 .Home-add-item {
     text-align: center;
-    color: #5B8092;
+    color: #758086;
 }
 
 
@@ -65,4 +72,23 @@
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.instructions-list {
+    width: 50%;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+.instructions-list > li {
+    margin: 10px 0;
+    color: #323943;
+    font-weight: bold;
+
+}
+
+.intro-paragraph {
+    color: #323943;
+    font-size: 20px;
+    text-align: center;
 }
