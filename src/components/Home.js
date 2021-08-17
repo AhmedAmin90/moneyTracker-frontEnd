@@ -55,9 +55,8 @@ const Home = ({userData}) => {
     } 
 
     const renderContent = ()=> {
-
         if (contentId === 1 ) {
-            return <Filter />
+            return addMeasurment
         }
         else if (contentId === 2 ) {
             return itemsPresence
@@ -74,6 +73,10 @@ const Home = ({userData}) => {
         }
     }
 
+    const addMeasurment = itemsList.length !== 0 ? <div> <Summary total={total}/>  <Filter /> </div> : <div>
+        <Summary total={total}/>  
+        <h1 className="Home-add-item"> Please Add Items first !</h1>
+    </div>
     const instructions = 
         <div> 
             <Summary total={total}/> 

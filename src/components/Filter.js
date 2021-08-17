@@ -1,6 +1,7 @@
 import React , {useState, useEffect}from 'react'
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import './Filter.css'
 
 const Filter = () => {
     const itemsList = useSelector(state => state.items);
@@ -44,17 +45,18 @@ const Filter = () => {
         }).then((res) => res.json()).then((res) => {console.log(res)})
       }
     return (
-        <div>
-            <form>
-                test
+        <div className="Filter">
+            <form className="Filter-form">
+                <p>Select the item: </p>
                 <select name="item"  onChange={handleChange}>
                     {itemsList.map(item=>(
                         <option key={item.name}  value={item.name}>{item.name}</option>
                     ))}
                 </select>
+                <p>Enter the amount: </p>
                 <input type="number" min="0"  name="expense" onChange={handleChange} />
             </form>
-            <button onClick={sendData}>Add New Expense</button>
+            <button className="Add-expense-btn" onClick={sendData}>Add New Expense</button>
         </div>
     )
 }

@@ -4,6 +4,8 @@ import { Redirect } from 'react-router';
 import { useDispatch , useSelector } from 'react-redux';
 import Measurment from './Measurment';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
+import './Single.css'
 
 const Single = ({itemData}) => {
     const itemName = itemData.match.params.itemName;
@@ -61,16 +63,24 @@ const Single = ({itemData}) => {
     } 
   
     return (
-        <div>
-            <form>
-                <input type="number" min="0"  name="expense" onChange={handleChange} />
-            </form>
-            <button onClick={sendData}>Add New Expense</button>
-
+        <div className="Single">
+            <div className="Single-form">
+                <form className="Filter-form">
+                    <h1 className="Home-add-item">Add Another expense: </h1>
+                    <input type="number" min="0"  name="expense" onChange={handleChange} />
+                </form>
+                
+                <button className="Add-expense-btn" onClick={sendData}>Add New Expense</button>
+            </div>
+  
+            <div>
             {expenses.map((exp , index )=>(
                 <Measurment key={index} expense={exp} />
             ))}
-            <Footer  />
+            </div>
+            <div className="Single-footer" >
+                <Link to={`/home/${userId}`}> Back to Your Dashboard</Link>
+            </div>
         </div>
     )
 }
