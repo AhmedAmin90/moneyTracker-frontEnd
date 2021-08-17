@@ -16,7 +16,7 @@ const Session = () => {
 
     const sendData =  async (e)=> {
         e.preventDefault();
-        const send = await fetch(`https://pacific-mountain-97932.herokuapp.com/sessions`, {
+        await fetch(`https://pacific-mountain-97932.herokuapp.com/sessions`, {
           method: 'post',
           body: JSON.stringify({ username: input.username, password: input.password}),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -31,13 +31,6 @@ const Session = () => {
             console.log(res);
  
         }})
-        // const send = await fetch(`https://pacific-mountain-97932.herokuapp.com/sessions`, {
-        //   method: 'post',
-        //   body: JSON.stringify({ username: input.username, password: input.password}),
-        //   headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        // }).then((res) => res.json())
-        console.log(send)
-        // dispatch(actions.login(send))
       }
 
 

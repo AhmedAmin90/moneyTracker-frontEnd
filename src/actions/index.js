@@ -18,3 +18,7 @@ export const content = (id) => ({
   type: 'CONTENT',
   id,
 })
+
+export const logout = {
+  type: "LOGOUT"
+}

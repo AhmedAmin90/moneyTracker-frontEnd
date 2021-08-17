@@ -71,6 +71,9 @@ const Home = ({userData}) => {
                         <AddItems userId={selectedId} />    
                    </div>
         }
+        else if (contentId === 4) {
+            window.location.reload()
+        }
     }
 
     return (
