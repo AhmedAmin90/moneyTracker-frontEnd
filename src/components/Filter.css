@@ -24,7 +24,7 @@
     font-weight: bold;
 }
 
-.Add-expense-btn {
+.Add-expense-btn , .Session-btn{
     margin: 20px auto;
     border: none;
     border-radius: 5px;
