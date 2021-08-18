@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     width: 200px;
     margin: 25px;
     color: #5B8092;
@@ -16,3 +16,23 @@
     color: #42B5E8;
     font-size: 40px;
 }
+
+
+@media screen and (max-width: 992px) {
+    .Item {
+        padding: 10px;
+        font-size: 7px ;
+        width: 130px;
+        margin: 5px;
+    }
+    .Item > i {
+        font-size: 25px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .Item {
+        width: 110px;
+    }
+
+  }

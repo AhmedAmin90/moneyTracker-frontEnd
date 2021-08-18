@@ -7,6 +7,7 @@ import * as actions from '../src/actions/index'
 import Footer from './components/Footer';
 import Session from './components/Session'
 import Registration from './Registration';
+import Header from './components/Header';
 function App() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.userId);
@@ -31,6 +32,7 @@ else if (contentId === 4) {
 
   return (
     <div className="App">
+      <Header />
       <Session />
       <Registration />
       <Footer />

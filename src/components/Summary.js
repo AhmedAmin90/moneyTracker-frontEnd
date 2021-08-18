@@ -1,7 +1,7 @@
 import React from 'react';
 import './Summary.css'
 
-const Summary = ({total }) => {
+const Summary = ({total = 0 }) => {
     const currentDate = new Date(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`).toLocaleString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
     return (
         <div className="Summary">

@@ -9,6 +9,7 @@ import axios from 'axios';
 import Footer from './Footer';
 import './Home.css'
 import Filter from './Filter';
+import Header from './Header';
 
 const Home = ({userData}) => {
     const dispatch = useDispatch();
@@ -63,7 +64,6 @@ const Home = ({userData}) => {
         }
         else if (contentId === 3) {
             return <div>
-                        <Summary total={total}/> 
                         <h1 className="Home-add-item">Add New Item</h1>
                         <AddItems userId={selectedId} />    
                    </div>
@@ -73,13 +73,13 @@ const Home = ({userData}) => {
         }
     }
 
-    const addMeasurment = itemsList.length !== 0 ? <div> <Summary total={total}/>  <Filter /> </div> : <div>
-        <Summary total={total}/>  
+    const addMeasurment = itemsList.length !== 0 ? <div>   <Filter /> </div> : <div>
+
         <h1 className="Home-add-item"> Please Add Items first !</h1>
     </div>
     const instructions = 
         <div> 
-            <Summary total={total}/> 
+
             <h1 className="Home-add-item">Welcome to Money tracker App - Thanks to use our application</h1>
             <p className="intro-paragraph">In this app , you can add unlimited items to track your expenses in this items.</p>
             <h1 className="Home-add-item">How To Add Your First Items ?</h1>
@@ -91,8 +91,7 @@ const Home = ({userData}) => {
             </ul>
         </div>
 
-    const renderItems = <div>
-        <Summary total={total}/> 
+    const renderItems = <div className="Home-child items-div-child">
     
         <div className="Home-items-div">
         {itemsList.map(item=>(
@@ -107,6 +106,11 @@ const Home = ({userData}) => {
     const itemsPresence = itemsList.length > 0 ? renderItems :  instructions
     return (
         <div className="Home">
+            <div>
+                <Header />
+                <Summary total={total}/> 
+            </div>
+         
             {renderContent()}
             <Footer />
         </div>

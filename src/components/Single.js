@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import { useDispatch , useSelector } from 'react-redux';
 import Measurment from './Measurment';
 import Footer from './Footer';
+import Summary from './Summary'
 import { Link } from 'react-router-dom';
 import './Single.css'
 
@@ -20,6 +21,7 @@ const Single = ({itemData}) => {
     const [expenses , setExpenses] = useState([]);
     const [itemId, setItemId] = useState('');
     const [axiosRes, setAxiosRes] = useState('');
+    const [total , setTotal] = useState(0)
 
     useEffect(() => {
         const cancelToken = axios.CancelToken;
@@ -45,6 +47,8 @@ const Single = ({itemData}) => {
             source.cancel('axios request cancelled');
           };
     })
+    let sum = 0
+    const sumAll = expenses.map(exp => sum = sum + exp.expense)
     
     // For sending new Measurment to database:
     const sendData =  ()=> {
@@ -55,7 +59,8 @@ const Single = ({itemData}) => {
         })
         const currentDate = new Date().toISOString()
 
-        setExpenses(pre=> ([...pre, {expense: expense, id: itemId  , created_at:currentDate} ]))
+        setExpenses(pre=> ([...pre, {expense: expense, id: itemId  , created_at:currentDate} ]));
+
       }
     
     if (!userId) {
@@ -63,7 +68,11 @@ const Single = ({itemData}) => {
     } 
   
     return (
+     
         <div className="Single">
+            <div>
+             <Summary total={sumAll[sumAll.length-1]}/>
+            </div>
             <div className="Single-form">
                 <form className="Filter-form">
                     <h1 className="Home-add-item">Add Another expense: </h1>
@@ -82,6 +91,7 @@ const Single = ({itemData}) => {
                 <Link to={`/home/${userId}`}> Back to Your Dashboard</Link>
             </div>
         </div>
+       
     )
 }
 

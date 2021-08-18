@@ -35,10 +35,17 @@
 }
 
 .arrow-hidden-div{
-    margin-top: -10px;
+    margin-top: -11px;
     width: 0;
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 8px solid #F3F4F6;
+    border-top: 9px solid #F3F4F6;
 }
+
+
+@media screen and (max-width: 992px) {
+    .Footer {
+      font-size: 10px;
+    }
+  }
