@@ -39,10 +39,14 @@
     font-size: 20px;
 }
 
-.Measurment-right > i {
+.Measurment-delete {
     font-size: 10px;
 }
-
+.Measurment-delete:hover {
+    cursor: pointer;
+    color: red;
+    transform: scale(1.2);
+}
 @media screen and (max-width: 1024px) {
 
     .Measurment-left {

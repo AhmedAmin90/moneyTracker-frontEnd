@@ -1,7 +1,11 @@
 import React from 'react';
 import './Measurment.css';
 
-const Measurment = ({expense}) => {
+const Measurment = ({expense , removeExpense }) => {
+
+    const handleRemove = ()=> {
+        removeExpense(expense.id)
+    }
     return (
         <div className="Measurment">
             <div className="Measurment-left">
@@ -10,7 +14,7 @@ const Measurment = ({expense}) => {
             </div>
             <div className="Measurment-right">
                  <p>{expense.expense}</p> 
-                 <i className="fas fa-chevron-right"></i>
+                 <i onClick={handleRemove} className="fas fa-trash-alt Measurment-delete"></i>
             </div>
         </div>
     )

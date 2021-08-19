@@ -12,7 +12,7 @@ const Single = ({itemData}) => {
     const itemName = itemData.match.params.itemName;
     const userId = useSelector((state) => state.userId);
     const dispatch = useDispatch();
-
+    
     // For Adding new Measurment:
     const [expense , setExpense ] = useState(0)
     const handleChange = (e)=> {
@@ -23,14 +23,21 @@ const Single = ({itemData}) => {
     const [axiosRes, setAxiosRes] = useState('');
     const [total , setTotal] = useState(0)
 
+    
     useEffect(() => {
         const cancelToken = axios.CancelToken;
         const source = cancelToken.source();
-        setAxiosRes(axiosRes);
+        setAxiosRes("axios request created");
         const getData = async ()=>{
+            if (!userId) {
+                return <Redirect to="/" />;
+            } 
+
+            try {
                 const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`, {
                     cancelToken: source.token,
-                  });
+                  })
+                setAxiosRes(res)  
                 const userItems = await res.data.items
                 const expRes = await axios.get('https://pacific-mountain-97932.herokuapp.com/api/v1/expenses');
                 const expData = await expRes.data;
@@ -40,13 +47,26 @@ const Single = ({itemData}) => {
                 setExpenses(expArray)
                 // console.log(selectedItem) 
                 setItemId(selectedItem.id);
-                    
+                let sum = 0
+                const sumAll = expenses.map(exp => sum = sum + exp.expense)
+                setTotal(sumAll[sumAll.length-1])  
+            } catch (err) {
+                if (axios.isCancel(err)) {
+                  return "axios request cancelled";
+                } 
+                throw err
+            }
+                 
         }  
         getData();
         return () => {
             source.cancel('axios request cancelled');
           };
     })
+
+    if (!userId) {
+        return <Redirect to="/" />;
+    } 
     let sum = 0
     const sumAll = expenses.map(exp => sum = sum + exp.expense)
     
@@ -57,21 +77,24 @@ const Single = ({itemData}) => {
           body: JSON.stringify({ expense: parseFloat(expense), item_id: itemId}),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
-        const currentDate = new Date().toISOString()
-
-        setExpenses(pre=> ([...pre, {expense: parseFloat(expense), id: itemId  , created_at:currentDate} ]));
 
       }
+
+    const handleRemoveExpense = (id)=>{
+        const selectedExpense = expenses.find(exp => exp.id === id)
+        console.log(selectedExpense )
+        fetch(`https://pacific-mountain-97932.herokuapp.com/api/v1/expenses/${id}`, {
+            method: 'DELETE',
+          })
+    }
     
-    if (!userId) {
-        return <Redirect to="/" />;
-    } 
+  
   
     return (
      
         <div className="Single">
             <div>
-             <Summary total={sumAll[sumAll.length-1]}/>
+             <Summary total={total}/>
             </div>
             <div className="Single-form">
                 <form className="Filter-form">
@@ -83,8 +106,9 @@ const Single = ({itemData}) => {
             </div>
   
             <div>
+                <h1 className="Home-add-item">{itemName}</h1>
             {expenses.map((exp , index )=>(
-                <Measurment key={index} expense={exp} />
+                <Measurment key={index} id={exp.id} expense={exp} removeExpense={handleRemoveExpense}/>
             ))}
             </div>
             <div className="Single-footer" >
