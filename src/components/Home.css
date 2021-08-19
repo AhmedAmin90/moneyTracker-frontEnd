@@ -75,18 +75,6 @@
     justify-content: space-between;
 
 }
-.AddItem-btn {
-    margin: 0 auto;
-    border: none;
-    border-radius: 5px;
-    background-color: #5BB5E5;
-    width: 100px;
-    height: 40px;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
 .instructions-list {
     width: 50%;

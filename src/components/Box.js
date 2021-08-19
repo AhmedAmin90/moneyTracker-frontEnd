@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Box = ({box , handleClickBox}) => {
     const handleClick = ()=>{
@@ -10,7 +9,7 @@ const Box = ({box , handleClickBox}) => {
 
     return (
 
-        <div key={box.id} className={isClickedBox} onClick={handleClick} clicked={box.clicked}>
+        <div key={box.id} className={isClickedBox} onClick={handleClick} >
             <div className={isClickedArrow} />
             <i className={box.icon}></i>
             <p>{box.text}</p>

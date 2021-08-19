@@ -18,32 +18,37 @@ const Home = ({userData}) => {
     const contentId = useSelector(state=> state.contentId)
     const selectedId = userData.match.params.id;
     const [total , setTotal] = useState(0);
-    // const [items , setItems] = useState(0)
     const [axiosRes, setAxiosRes] = useState('');
 
     useEffect(() => {
         const cancelToken = axios.CancelToken;
         const source = cancelToken.source();
-        setAxiosRes(axiosRes);
+        setAxiosRes("axios request created");
         const getData = async ()=>{
-        // const allItems = await axios.get('https://pacific-mountain-97932.herokuapp.com/api/v1/items');
-        // const allItemslength = await allItems.data.length;
-        // setItems(allItemslength + 1 )
-        const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`, {
-            cancelToken: source.token,
-          });
-         const data = await res.data
-         setTotal(data.total)
-         if (!userId || itemsList.length !==0) {
-            //  Length to avoid rerender dispatching if i back to this page again
-            //  userid to avoid dispatching items if some one add user id to the path without loging
-            return 
-        } 
-        else {
-            data.items.map(item=>(
-                dispatch(actions.items(item))
-             )) 
-        }         
+            try {
+                const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`, {
+                    cancelToken: source.token,
+                  });
+                 setAxiosRes(res) 
+                 const data = await res.data
+                 setTotal(data.total)
+                 if (!userId || itemsList.length !==0) {
+                    //  Length to avoid rerender dispatching if i back to this page again
+                    //  userid to avoid dispatching items if some one add user id to the path without loging
+                    return 
+                } 
+                else {
+                    data.items.map(item=>(
+                        dispatch(actions.items(item))
+                     )) 
+                } 
+            } catch (err) {
+                if (axios.isCancel(err)) {
+                  return "axios request cancelled";
+                } 
+                throw err
+            } 
+             
        }
        getData();
        return () => {
