@@ -1,5 +1,6 @@
 import { render, screen , fireEvent } from '@testing-library/react';
 import App from './App';
+import Session from './components/Session';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -84,11 +85,27 @@ test('Click on Sign up will show to us sing up form' , async ()=> {
  test('Presence of login form' , ()=> {
     expect(wrapper.find('input[name="username"]')).toBeTruthy()
     expect(wrapper.find('input[name="password"]')).toBeTruthy()
-    wrapper.find('input[name="password"]').simulate("change", {
-      target: { name: "password", value: "123123" },
-    })
 
   })
+
+  test('Change the value of user name' ,  ()=> {
+    const { container } = renderedComponent;
+    const input = container.querySelector('.login-form-username');
+    fireEvent.change(input, {target: {value: 'Ahmed'}})
+    expect(input.value).toEqual('Ahmed');
+
+  })
+
+  test('Change the value of password' ,  ()=> {
+    const { container } = renderedComponent;
+    const input = container.querySelector('.login-form-password');
+    fireEvent.change(input, {target: {value: '123456'}})
+    expect(input.value).toEqual('123456');
+  })
+
+
+
+ 
 
 
 
