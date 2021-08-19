@@ -16,13 +16,12 @@ function App() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.userId);
   const contentId = useSelector(state=> state.contentId);
+  const errorMsg = useSelector(state=> state.errorMsg)
+
   const [login , setLogin] = useState('Sign In')
 
   if (contentId === 1 ) {
-          dispatch(actions.error('Please Sing in firstly to Add expenses'))
-      }
-      else if (contentId === 2) {
-        dispatch(actions.error(''))
+      dispatch(actions.error('Please Sing in firstly to Add expenses'))
       }
       else if (contentId === 3) {
         dispatch(actions.error('Please Sing in firstly to Add Items'))
@@ -43,7 +42,7 @@ function App() {
     dispatch(actions.error(''))
   }
    
-  const loginBtn = login === 'Sign In' ? <Session sendData={helpers.sendUserData} text="Sign in - Track your expenses now !"/> :  <Session sendData={helpers.createUser} text="Sign up with us - Track your expenses now !"/>
+  const loginBtn = login === 'Sign In' ? <Session sendData={helpers.sendUserData} errorMsg={errorMsg} text="Sign in - Track your expenses now !"/> :  <Session sendData={helpers.createUser} errorMsg={errorMsg} text="Sign up with us - Track your expenses now !"/>
 
   return (
     <div className="App">
@@ -52,7 +51,6 @@ function App() {
       <div>
       {loginBtn}
       </div>
-      
       <Footer />
     </div>
   );

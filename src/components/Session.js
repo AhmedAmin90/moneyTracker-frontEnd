@@ -4,8 +4,8 @@ import { Redirect } from "react-router-dom";
 import * as actions from '../actions/index';
 import './Session.css';
 import LoginForm from './LoginForm';
-const Session = ({sendData , text}) => {
-    const errorMsg = useSelector(state=> state.errorMsg)
+const Session = ({sendData , text , errorMsg}) => {
+    // const errorMsg = useSelector(state=> state.errorMsg)
     const [input , setIntpu] = useState({
         username: '',
         password: ''
