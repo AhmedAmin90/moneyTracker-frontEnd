@@ -1,6 +1,6 @@
 .Login-forms {
     width: 50%;
-    margin: 50px auto;
+    margin: 10px auto;
     height: 300px;
     border: 3px solid #91969c;
     border-radius: 10px;
@@ -36,6 +36,18 @@
     color: white;
 }
 
+.Session-btn{
+    align-self: center;
+    border: none;
+    border-radius: 5px;
+    background-color: #323943;
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
 
 
@@ -47,5 +59,12 @@
     .Home-add-item  {
         font-size: 1rem;
     }
+
+    .Login-form > input {
+        margin: 5px 0;
+    }
   }
+
+
+
 

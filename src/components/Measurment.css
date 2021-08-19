@@ -42,3 +42,29 @@
 .Measurment-right > i {
     font-size: 10px;
 }
+
+@media screen and (max-width: 1024px) {
+
+    .Measurment-left {
+        width: 20%;
+    }
+
+  }
+
+  @media screen and (max-width: 678px) {
+      
+    .Measurment-left {
+        width: 30%;
+    }
+  }
+
+  @media screen and (max-width: 475px) {
+      
+    .Measurment-left {
+        width: 50%;
+        justify-content: flex-start;
+    }
+    .Measurment-percentage-circle {
+        margin-right: 10px;
+    }
+  }

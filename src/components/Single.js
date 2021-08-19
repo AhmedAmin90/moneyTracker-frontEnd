@@ -14,7 +14,7 @@ const Single = ({itemData}) => {
     const dispatch = useDispatch();
 
     // For Adding new Measurment:
-    const [expense , setExpense ] = useState('0')
+    const [expense , setExpense ] = useState(0)
     const handleChange = (e)=> {
         setExpense(e.target.value)
     }
@@ -54,12 +54,12 @@ const Single = ({itemData}) => {
     const sendData =  ()=> {
         fetch(`https://pacific-mountain-97932.herokuapp.com/api/v1/expenses`, {
           method: 'post',
-          body: JSON.stringify({ expense: expense, item_id: itemId}),
+          body: JSON.stringify({ expense: parseFloat(expense), item_id: itemId}),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
         const currentDate = new Date().toISOString()
 
-        setExpenses(pre=> ([...pre, {expense: expense, id: itemId  , created_at:currentDate} ]));
+        setExpenses(pre=> ([...pre, {expense: parseFloat(expense), id: itemId  , created_at:currentDate} ]));
 
       }
     
@@ -76,7 +76,7 @@ const Single = ({itemData}) => {
             <div className="Single-form">
                 <form className="Filter-form">
                     <h1 className="Home-add-item">Add Another expense: </h1>
-                    <input type="number" min="0"  name="expense" onChange={handleChange} />
+                    <input type="number" name="expense" min="0"  onChange={handleChange} placeholder="0"/>
                 </form>
                 
                 <button className="Add-expense-btn" onClick={sendData}>Add New Expense</button>

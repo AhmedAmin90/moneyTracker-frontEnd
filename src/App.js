@@ -49,7 +49,10 @@ function App() {
     <div className="App">
       <Header />
       <button className="Session-btn" onClick={handleClick}>{login === 'Sign In' ? 'Sign Up' : 'Sign In'}</button>
+      <div>
       {loginBtn}
+      </div>
+      
       <Footer />
     </div>
   );

@@ -53,7 +53,7 @@ const Filter = () => {
                     ))}
                 </select>
                 <p>Enter the amount: </p>
-                <input className="Filter-form-number-input" type="number" min="0"  name="expense" onChange={handleChange} />
+                <input className="Filter-form-number-input" type="number" min="0"  name="expense" onChange={handleChange} placeholder="0" />
             </form>
             <button className="Add-expense-btn" onClick={sendData}>Add New Expense</button>
         </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import './Measurment.css';
 
 const Measurment = ({expense}) => {
-    // new Date(`${expense.created_at.split('T')[0]}`).toLocaleString("en", { month: 'short', day: 'numeric', year: 'numeric' })
     return (
         <div className="Measurment">
             <div className="Measurment-left">
