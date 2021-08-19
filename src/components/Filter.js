@@ -17,11 +17,8 @@ const Filter = () => {
         const getItemID = async ()=>{
             const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`);
             const userItems = await res.data.items
-            console.log(userItems)
             const selectedItem = userItems.find(item=> item.name === value.item);
-            console.log(selectedItem)
             setItemId(selectedItem.id);
-            console.log(itemId)
         } 
 
         getItemID()
@@ -38,12 +35,14 @@ const Filter = () => {
 
  
     const sendData = async ()=> {
-         fetch(`https://pacific-mountain-97932.herokuapp.com/api/v1/expenses`, {
+         await fetch(`https://pacific-mountain-97932.herokuapp.com/api/v1/expenses`, {
           method: 'post',
           body: JSON.stringify({ expense: value.expense, item_id: itemId}),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        }).then((res) => res.json()).then((res) => {console.log(res)})
+        }).then((res) => res.json()).then((res) => {console.log(res)});
+        document.querySelector('.Filter-form-number-input').value = ''
       }
+
     return (
         <div className="Filter">
             <form className="Filter-form">
@@ -54,7 +53,7 @@ const Filter = () => {
                     ))}
                 </select>
                 <p>Enter the amount: </p>
-                <input type="number" min="0"  name="expense" onChange={handleChange} />
+                <input className="Filter-form-number-input" type="number" min="0"  name="expense" onChange={handleChange} />
             </form>
             <button className="Add-expense-btn" onClick={sendData}>Add New Expense</button>
         </div>

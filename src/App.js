@@ -21,6 +21,9 @@ function App() {
   if (contentId === 1 ) {
           dispatch(actions.error('Please Sing in firstly to Add expenses'))
       }
+      else if (contentId === 2) {
+        dispatch(actions.error(''))
+      }
       else if (contentId === 3) {
         dispatch(actions.error('Please Sing in firstly to Add Items'))
       }
