@@ -8,8 +8,8 @@ import {
 import store from '../../index'
 import '@testing-library/jest-dom/extend-expect';
 
-
-describe("RecipeList", () => {
+ 
+describe("Data for mock", () => {
   const data = {
     user: { id: 1, email: "", created_at: "2021-08-19T12:25:14.513Z", updated_at: "2021-08-19T12:25:14.513Z", username: "ahmed" },
     items: [{

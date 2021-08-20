@@ -42,10 +42,10 @@ const AddItems = ({userId}) => {
                 <input className="AddItem-text-input" type='text' name="item" onChange={handleChange}/>
                 <div className="AddItem-form-icons">
                     <div className="Icon-wrap">
-                        <input onChange={handleChange} type="radio" name="icons" value="fas fa-passport"/> <i className="fas fa-passport"></i>
+                        <input  onChange={handleChange} type="radio" name="icons" value="fas fa-passport"/> <i data-testid="fas fa-passport" className="fas fa-passport"></i>
                     </div>
                     <div className="Icon-wrap">
-                        <input onChange={handleChange} type="radio" name="icons" value="fas fa-volleyball-ball"/> <i className="fas fa-volleyball-ball"></i>
+                        <input onChange={handleChange}  type="radio" name="icons" value="fas fa-volleyball-ball"/> <i className="fas fa-volleyball-ball"></i>
                     </div>
                     <div className="Icon-wrap">
                         <input onChange={handleChange} type="radio" name="icons" value="fas fa-coffee"/> <i className="fas fa-coffee"></i>

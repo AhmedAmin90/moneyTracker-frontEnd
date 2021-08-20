@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
 import AddItems from '../containers/AddItems';
@@ -25,7 +25,7 @@ const Home = ({ userData, testData = false }) => {
     const [total, setTotal] = useState(0);
     const [axiosRes, setAxiosRes] = useState('');
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!testData) {
             var cancelToken = axios.CancelToken;
             var source = cancelToken.source();

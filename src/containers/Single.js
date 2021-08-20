@@ -8,8 +8,12 @@ import { Link } from 'react-router-dom';
 import './Single.css'
 
 const Single = ({itemData , testData}) => {
-    const itemName = itemData.match.params.itemName;
-    const userId = useSelector((state) => state.userId);
+    const itemName = itemData.match.params.itemName; 
+  
+    let userId = useSelector((state) => state.userId);
+      if (testData) {
+        userId = testData.user.id
+    }
     const dispatch = useDispatch();
     
     // For Adding new Measurment:
@@ -45,9 +49,7 @@ const Single = ({itemData , testData}) => {
                 const expData = await expRes.data;
                 const selectedItem = userItems.find(item=> item.name === itemName);
                 const expArray = expData.filter(exp=> exp.item_id === itemId)
-                // console.log(expArray)  
                 setExpenses(expArray)
-                // console.log(selectedItem) 
                 setItemId(selectedItem.id);
                 let sum = 0
                 const sumAll = expenses.map(exp => sum = sum + exp.expense)
@@ -71,8 +73,7 @@ const Single = ({itemData , testData}) => {
     if (!userId) {
         return <Redirect to="/" />;
     } 
-    // let sum = 0
-    // const sumAll = expenses.map(exp => sum = sum + exp.expense)
+
     
     // For sending new Measurment to database:
     const sendData =  ()=> {
@@ -100,7 +101,7 @@ const Single = ({itemData , testData}) => {
             <div>
              <Summary total={total}/>
             </div>
-            <div className="Single-form">
+            <div data-testid="single-form" className="Single-form">
                 <form className="Filter-form">
                     <h1 className="Home-add-item">Add Another expense: </h1>
                     <input type="number" name="expense" min="0"  onChange={handleChange} placeholder="0"/>
@@ -111,9 +112,11 @@ const Single = ({itemData , testData}) => {
   
             <div>
                 <h1 className="Home-add-item">{itemName}</h1>
-            {expenses.map((exp , index )=>(
+                {testData ? testData.expenses.map((exp , index )=>(
+                <Measurment key={index} id={exp.id} expense={exp} removeExpense={handleRemoveExpense}/>)) :
+                expenses.map((exp , index )=>(
                 <Measurment key={index} id={exp.id} expense={exp} removeExpense={handleRemoveExpense}/>
-            ))}
+            ))} 
             </div>
             <div className="Single-footer" >
                 <Link to={`/home/${userId}`}> Back to Your Dashboard</Link>
