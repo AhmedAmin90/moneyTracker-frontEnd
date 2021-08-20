@@ -1,6 +1,6 @@
 import React from 'react'
 // Component
-import Home from '../../components/Session';
+import Home from '../../components/Home';
 
 // Testing library
 import { render, screen , act } from '@testing-library/react';
