@@ -13,18 +13,12 @@ import {shallow } from 'enzyme'
 Enzyme.configure({adapter: new EnzymeAdapter()})
 describe('rendered App',()=> {
   let renderedComponent;
-  let wrapper;
   beforeEach(() => {
      renderedComponent =  render( <Provider store={store}>
       <Router>
         <App />
       </Router>
     </Provider>,);
-      wrapper = shallow(<Provider store={store}>
-        <Router>
-          <App />
-        </Router>
-      </Provider>);
    
   })
 
@@ -53,15 +47,7 @@ test('Store' , ()=> {
 
   })
 
-// test('Click on Add expenses will raise an error and change the store' , async ()=> {
-//     const {getByText} =  renderedComponent;
-//     const button = getByText('Add Expenses')
-//     await fireEvent.click(button)
-//     const myStore = store.getState();
-//     const element = screen.getByText(/Please Sing in firstly to Add expenses/i);
-//     expect(element).toBeInTheDocument();
-//     expect(myStore.contentId).toBe(1)
-//   })
+
 
 test('Click on Sign up will show to us sing up form' , async ()=> {
     const {getByText} =  renderedComponent;
@@ -71,42 +57,24 @@ test('Click on Sign up will show to us sing up form' , async ()=> {
     expect(element).toBeInTheDocument();
   })
 
-  // test('Click on Sign up will show to us sing up form' , async ()=> {
-  //   const {getByText} =  renderedComponent;
-  //   const button = screen.getByRole('button')
-  //   await fireEvent.click(button)
-  //   const element = screen.getByText(/Incorrect! Please check your Username or Password.!/i);
-  //   expect(element).toBeInTheDocument();
-  // })
-
-
-
-
- test('Presence of login form' , ()=> {
-    expect(wrapper.find('input[name="username"]')).toBeTruthy()
-    expect(wrapper.find('input[name="password"]')).toBeTruthy()
-
-  })
-
-  test('Change the value of user name' ,  ()=> {
-    const { container } = renderedComponent;
-    const input = container.querySelector('.login-form-username');
-    fireEvent.change(input, {target: {value: 'Ahmed'}})
-    expect(input.value).toEqual('Ahmed');
-
-  })
-
-  test('Change the value of password' ,  ()=> {
-    const { container } = renderedComponent;
-    const input = container.querySelector('.login-form-password');
-    fireEvent.change(input, {target: {value: '123456'}})
-    expect(input.value).toEqual('123456');
+  test('Click on Add expenses will raise an error and change the store' , async ()=> {
+    const {getByText} =  renderedComponent;
+    const button = getByText('Add Expenses')
+    await fireEvent.click(button)
+    const myStore = store.getState();
+    const element = screen.getByText(/Please Sing in firstly to Add expenses/i);
+    expect(element).toBeInTheDocument();
+    expect(myStore.contentId).toBe(1)
   })
 
 
-
- 
-
+  test('Back store to 2 again ' , async ()=> {
+    const {getByText} =  renderedComponent;
+    const button = getByText('Track Expenses')
+    await fireEvent.click(button)
+    const myStore = store.getState();
+    expect(myStore.contentId).toBe(2)
+  })
 
 
 })

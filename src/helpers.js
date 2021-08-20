@@ -26,7 +26,6 @@ export  const sendUserData =  async (e , username , password)=> {
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
       }).then((res) => res.json()).then((res) => {
           if (res.errors) {
-              console.log(res)
               if (res.errors.username) {
                   store.dispatch(actions.error(res.errors.username[0]))
               }

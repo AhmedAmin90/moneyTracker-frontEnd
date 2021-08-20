@@ -11,7 +11,7 @@ import './Home.css'
 import Filter from './Filter';
 import Header from './Header';
 
-const Home = ({userData}) => {
+const Home = ({userData , testData}) => {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.userId);
     const itemsList = useSelector(state => state.items);
@@ -20,16 +20,18 @@ const Home = ({userData}) => {
     const [total , setTotal] = useState(0);
     const [axiosRes, setAxiosRes] = useState('');
 
-    useEffect(() => {
+    React.useEffect(() => {
         const cancelToken = axios.CancelToken;
         const source = cancelToken.source();
         setAxiosRes("axios request created");
         const getData = async ()=>{
             try {
-                const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`, {
+                const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`
+                , {
                     cancelToken: source.token,
                   });
                  setAxiosRes(res) 
+                 console.log(res)
                  const data = await res.data
                  setTotal(data.total)
                  if (!userId || itemsList.length !==0) {
@@ -99,11 +101,12 @@ const Home = ({userData}) => {
     const renderItems = <div className="Home-child items-div-child">
     
         <div className="Home-items-div">
+
         {itemsList.map(item=>(
             <Link key={item.name} to={`/items/${item.name}`}>
                 <Item key={item.name} item={item} />
             </Link>
-        ))}
+        ))} 
         </div>
         </div>
     

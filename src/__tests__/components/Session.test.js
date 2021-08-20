@@ -12,6 +12,28 @@ import {shallow } from 'enzyme'
 Enzyme.configure({adapter: new EnzymeAdapter()})
 
 describe('rendered App',()=> {
+
+  // This line for prevent the error:
+  // Error: Not implemented: HTMLFormElement.prototype.submit
+ // In the test console
+//  Reference: https://github.com/jsdom/jsdom/issues/1937
+  let emit;
+
+  beforeAll(() => {
+    ({ emit } = window._virtualConsole);
+  });
+
+  beforeEach(() => {
+    window._virtualConsole.emit = jest.fn();
+  });
+
+  afterAll(() => {
+    window._virtualConsole.emit = emit;
+  });
+
+  // End of these lines
+
+  // Start on testing:
     let renderedComponent;
     let wrapper;
     const handleClick = jest.fn()
@@ -19,13 +41,13 @@ describe('rendered App',()=> {
     beforeEach(() => {
        renderedComponent =  render( <Provider store={store}>
         <Router>
-          <Session sendData={handleClick} />
+          <Session sendData={handleClick} errorMsg="Test error msg" text="This is a test text"/>
         </Router>
       </Provider>,);
 
         wrapper = shallow(<Provider store={store}>
           <Router>
-          <Session sendData={handleClick} />
+          <Session sendData={handleClick}  />
           </Router>
         </Provider>);
      
@@ -35,38 +57,41 @@ describe('rendered App',()=> {
         fireEvent.click(screen.getByText(/Submit/i))
         expect(handleClick).toHaveBeenCalledTimes(1)
       }) 
-  
-  
+
+      test('calls onClick prop when clicked', () => {
+        const element = screen.getByText(/Test error msg/i);
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveClass('error-msg');
+      })
+
+      test('calls onClick prop when clicked', () => {
+        const element = screen.getByText(/This is a test text/i);
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveClass('Home-add-item');
+      })
+
+      test('Presence of login form' , ()=> {
+        expect(wrapper.find('input[name="username"]')).toBeTruthy()
+        expect(wrapper.find('input[name="password"]')).toBeTruthy()
+      })
+    
+      test('Change the value of user name' ,  ()=> {
+        const { container } = renderedComponent;
+        const input = container.querySelector('.login-form-username');
+        fireEvent.change(input, {target: {value: 'Ahmed'}})
+        expect(input.value).toEqual('Ahmed');
+      })
+    
+      test('Change the value of password' ,  ()=> {
+        const { container } = renderedComponent;
+        const input = container.querySelector('.login-form-password');
+        fireEvent.change(input, {target: {value: '123456'}})
+        expect(input.value).toEqual('123456');
+      })
+    
   
   })
   
-  
-  
-    // const Button = ({onClick, children}) => (
-  //   <button onClick={onClick}>{children}</button>
-  // )
-  
-  // test('calls onClick prop when clicked', async () => {
-  //   const handleClick = jest.fn()
-  //   render(
-  //     <Provider store={store}>
-  //     <Router>
-  //       <Session sendData={handleClick} />
-  //     </Router>
-  //   </Provider>
-  //   )
-  //   const { container } = renderedComponent;
-  //   const userInput = container.querySelector('.login-form-username');
-  //   // expect(input.value).toEqual('Ahmed');
-  //   // const { container } = renderedComponent;
-  //   const passwInput = container.querySelector('.login-form-password');
-  //    fireEvent.change(userInput, {target: {value: 'Ahmed'}})
-  //    fireEvent.change(passwInput, {target: {value: '123456'}})
-  //   // expect(input.value).toEqual('123456');
-  //   await fireEvent.click(screen.getAllByText(/Submit/i)[0])
-  //   expect(handleClick).toHaveBeenCalledTimes(1)
-  // })
-
 
 
   

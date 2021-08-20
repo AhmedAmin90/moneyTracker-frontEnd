@@ -1,5 +1,4 @@
 import React  , {useState , useEffect}from 'react'
-import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import { useDispatch , useSelector } from 'react-redux';
 import * as actions from '../actions/index';
 

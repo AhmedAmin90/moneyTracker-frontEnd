@@ -8,7 +8,7 @@ function LoginForm({text , errorMsg , handleChange , sendData}) {
                 <p className="error-msg">{errorMsg}</p>
                 <input className="login-form-username" type="text" onChange={handleChange} name="username" placeholder="username"/>
                 <input className="login-form-password" type="password" onChange={handleChange}  name="password" placeholder="password"/>
-                <button onClick={sendData}>Submit</button>
+                <button  data-testid='submit-btn' onClick={sendData}>Submit</button>
             </form>
         </div>
     )

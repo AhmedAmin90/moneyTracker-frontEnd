@@ -67,8 +67,8 @@ const Single = ({itemData}) => {
     if (!userId) {
         return <Redirect to="/" />;
     } 
-    let sum = 0
-    const sumAll = expenses.map(exp => sum = sum + exp.expense)
+    // let sum = 0
+    // const sumAll = expenses.map(exp => sum = sum + exp.expense)
     
     // For sending new Measurment to database:
     const sendData =  ()=> {

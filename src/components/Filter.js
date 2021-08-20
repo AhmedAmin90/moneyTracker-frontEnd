@@ -13,10 +13,11 @@ const Filter = () => {
     });
     const [ itemId , setItemId ] = useState('');
 
-    useEffect(() => {
+    React.useEffect(() => {
         const getItemID = async ()=>{
             const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`);
             const userItems = await res.data.items
+            console.log(res.data)
             const selectedItem = userItems.find(item=> item.name === value.item);
             setItemId(selectedItem.id);
         } 

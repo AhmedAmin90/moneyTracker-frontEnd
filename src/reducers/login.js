@@ -1,6 +1,6 @@
 const loginReducer = (state = '', action) => {
     if (action.type === 'LOGIN') {
-      console.log(action);
+      console.log(action)
       return action.payload.id
     }
     return state;
