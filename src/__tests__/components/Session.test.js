@@ -1,5 +1,5 @@
 import { render, screen , fireEvent } from '@testing-library/react';
-import Session from '../../components/Session';
+import Session from '../../containers/Session';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,

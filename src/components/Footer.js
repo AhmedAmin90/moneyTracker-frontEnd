@@ -1,7 +1,7 @@
 import React , {useState}from 'react';
 import { useDispatch , useSelector} from 'react-redux';
 import * as actions from '../actions/index'
-import Box from './Box';
+import Box from '../containers/Box';
 import './Footer.css'
 
 const Footer = () => {

@@ -1,56 +1,43 @@
-import Filter from '../../components/Filter'
+import Filter from '../../containers/Filter'
 import React from 'react';
-import { render, screen  } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 import store from '../../index'
-import {getData} from '../../__mocks__/axios'
-import * as ReactReduxHooks from "../../react-redux-hooks";
 
+describe('Measurment', () => {
+  const data = {
+    user: { id: 1, email: "", created_at: "2021-08-19T12:25:14.513Z", updated_at: "2021-08-19T12:25:14.513Z", username: "ahmed" },
+    items: [{
+      created_at: "2021-08-19T12:25:38.451Z",
+      icon: "fas fa-coffee",
+      id: 1,
+      name: "cafe",
+      updated_at: "2021-08-19T12:25:38.451Z",
+      user_id: 1
+    }]
+  }
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <Filter testData={data} />
+        </Router>
+      </Provider>);
+  })
 
-let renderedComponent;
-let useEffect;
-const mockUseEffect = () => {
-    useEffect.mockImplementationOnce(f => f());
-  };
-describe('Measurment', ()=> {
-    beforeEach(()=> {
-        getData()
-        useEffect = jest.spyOn(React, "useEffect");
-    mockUseEffect(); // 2 times
-    mockUseEffect(); //
-    /* mocking useSelector on our mock store */
-    jest
-       .spyOn(ReactReduxHooks, "useSelector")
-       .mockImplementation(state => store.getState());
-  /* mocking useDispatch on our mock store  */
-  jest
-     .spyOn(ReactReduxHooks, "useDispatch")
-     .mockImplementation(() => store.dispatch);
-        renderedComponent = render(
-            <Provider store={store}>
-            <Router>
-                <Filter/>
-            </Router>
-          </Provider>);
-    })
-
-    it('Test', ()=> {
-        const { container } = renderedComponent;
-        const expenseParagraph = container.querySelector('.Filter-form');
-        expect(expenseParagraph).toBeInTheDocument()
-    })
-    // it('Test', ()=> {
-    //     const element = screen.getByText(currentDate);
-    //     expect(element).toBeTruthy()
-    // })
-    // it('Test', ()=> {
-    //     const { container } = renderedComponent;
-    //     const div = container.querySelector('.Summary');
-    //     expect(div).toBeInTheDocument()
-    // })
+  it('display the filter component', () => {
+    expect(screen.getByTestId('filter-component')).toBeInTheDocument()
+  })
+  it('display the filter select', () => {
+    expect(screen.getByTestId('filter-select')).toBeInTheDocument()
+  })
+  it('display the filter input', () => {
+    expect(screen.getByTestId('filter-input')).toBeInTheDocument()
+  })
 
 })
+
 

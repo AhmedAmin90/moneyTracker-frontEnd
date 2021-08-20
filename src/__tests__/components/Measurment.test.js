@@ -1,4 +1,4 @@
-import Measurment from '../../components/Measurment'
+import Measurment from '../../containers/Measurment'
 import { render, screen  } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import {

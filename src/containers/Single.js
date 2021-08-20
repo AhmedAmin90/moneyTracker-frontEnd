@@ -3,12 +3,11 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import { useDispatch , useSelector } from 'react-redux';
 import Measurment from './Measurment';
-import Footer from './Footer';
 import Summary from './Summary'
 import { Link } from 'react-router-dom';
 import './Single.css'
 
-const Single = ({itemData}) => {
+const Single = ({itemData , testData}) => {
     const itemName = itemData.match.params.itemName;
     const userId = useSelector((state) => state.userId);
     const dispatch = useDispatch();
@@ -25,9 +24,12 @@ const Single = ({itemData}) => {
 
     
     useEffect(() => {
-        const cancelToken = axios.CancelToken;
-        const source = cancelToken.source();
-        setAxiosRes("axios request created");
+
+        if (!testData) {
+            var cancelToken = axios.CancelToken;
+            var source = cancelToken.source();
+            setAxiosRes("axios request created");
+        }
         const getData = async ()=>{
             if (!userId) {
                 return <Redirect to="/" />;
@@ -58,10 +60,12 @@ const Single = ({itemData}) => {
             }
                  
         }  
-        getData();
-        return () => {
-            source.cancel('axios request cancelled');
-          };
+        if (!testData) {
+            getData();
+            return () => {
+                source.cancel('axios request cancelled');
+            };
+        }
     })
 
     if (!userId) {

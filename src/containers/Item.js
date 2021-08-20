@@ -3,7 +3,7 @@ import './Item.css'
 const Item = ({item}) => {
     return (
         <div className="Item">
-            <i className={item.icon}></i> 
+            <i data-testid='items-div-icon' className={item.icon}></i> 
             <h1>{item.name}</h1>
         </div>
     )

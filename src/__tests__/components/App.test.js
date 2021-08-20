@@ -1,11 +1,11 @@
 import { render, screen , fireEvent } from '@testing-library/react';
-import App from './App';
-import Session from './components/Session';
+import App from '../../components/App';
+import Session from '../../containers/Session'
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
-import store from './index'
+import store from '../../index'
 import Enzyme from 'enzyme'
 import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17'
 import {shallow } from 'enzyme'

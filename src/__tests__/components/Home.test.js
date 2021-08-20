@@ -1,100 +1,73 @@
 import React from 'react'
-// Component
 import Home from '../../components/Home';
-
-// Testing library
-import { render, screen , act } from '@testing-library/react';
-
-// Redux and router
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
-import * as ReactReduxHooks from "../../react-redux-hooks";
-// import store from '../../index'
-// import * as actions from '../../actions/index';
-
-import thunk from 'redux-thunk';
-import configureStore from 'redux-mock-store'
-
-// Axios
-import axios from 'axios'
-import mockAxios from "jest-mock-axios";
-// Enzyme:
-import { configure , shallow} from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-configure({ adapter: new Adapter() });
+import store from '../../index'
+import '@testing-library/jest-dom/extend-expect';
 
 
 describe("RecipeList", () => {
-  let wrapper;
-  let useEffect;
-  let store;
   const data = {
-    user: {id: 1, email: "", created_at: "2021-08-19T12:25:14.513Z", updated_at: "2021-08-19T12:25:14.513Z", username: "ahmed"},
+    user: { id: 1, email: "", created_at: "2021-08-19T12:25:14.513Z", updated_at: "2021-08-19T12:25:14.513Z", username: "ahmed" },
     items: [{
-        created_at: "2021-08-19T12:25:38.451Z",
-        icon: "fas fa-coffee",
-        id: 1,
-        name: "cafe",
-        updated_at: "2021-08-19T12:25:38.451Z",
-        user_id: 1
+      created_at: "2021-08-19T12:25:38.451Z",
+      icon: "fas fa-coffee",
+      id: 1,
+      name: "cafe",
+      updated_at: "2021-08-19T12:25:38.451Z",
+      user_id: 1
     }]
-}
+  }
 
-  const mockUseEffect = () => {
-    useEffect.mockImplementationOnce(f => f());
-  };
   beforeEach(() => {
-    /* mocking store */
-    store = configureStore([thunk])({
-      userId: data.user.id,
-      errorMsg: '',
-      items: data.items,
-      contentId: 2
-    });
-
     const routeComponentPropsMock = {
-        history: {},
-        location: {},
-        match: { params: { id: 1 } },
-      };
-  
-    /* mocking useEffect */
-    useEffect = jest.spyOn(React, "useEffect");
-    mockUseEffect(); // 2 times
-    mockUseEffect(); //
-    /* mocking useSelector on our mock store */
-    jest
-       .spyOn(ReactReduxHooks, "useSelector")
-       .mockImplementation(state => store.getState());
-  /* mocking useDispatch on our mock store  */
-  jest
-     .spyOn(ReactReduxHooks, "useDispatch")
-     .mockImplementation(() => store.dispatch);
-  /* shallow rendering */
-     wrapper = shallow(
-               <Provider store={store}>
-                <Router>
-                  <Home userData={routeComponentPropsMock} />
-                </Router>
-              </Provider>,);
+      history: {},
+      location: {},
+      match: { params: { id: 1 } },
+    };
+    render(
+      <Provider store={store}>
+        <Router>
+          <Home testData={data} userData={routeComponentPropsMock} />
+        </Router>
+      </Provider>);
   });
 
-  it('Store' , ()=> {
-    const myStore = store.getState();
-    expect(myStore.userId).toBe(1)
-    expect(myStore.items).toHaveLength(1);
+  it('Render Home Component', () => {
+    expect(screen.getByTestId('home-component')).toBeInTheDocument()
+  })
+  it('Render items list', () => {
+    expect(screen.getByTestId('items-div')).toBeInTheDocument()
+  })
+  it('Render item name', () => {
+    expect(screen.getByTestId('cafe')).toBeInTheDocument()
   })
 
-  it("should dispatch getAllShirts action to store", () => {
-    const actions = store.getActions();
-    expect(actions).toBeInstanceOf(Array);
-  });
+  it('item name not falsey', () => {
+    expect(screen.getByTestId('cafe')).not.toBeFalsy()
 
-  
+  })
+
+  it('Render Icon from fontawesome ', () => {
+    expect(screen.getByTestId('items-div-icon')).toBeInTheDocument()
+    expect(screen.getByTestId('items-div-icon')).toHaveClass('fas fa-coffee')
+    expect(screen.getByTestId('items-div-icon')).not.toHaveClass('another-class')
+  })
+
+  it('Presence of Footer', ()=> {
+    expect(screen.getByText('Add Expenses')).toBeInTheDocument()
+})
+
+it('Presence of Header', ()=> {
+  expect(screen.getByText('Money Tracker')).toBeInTheDocument()
+})
+
+
 });
 
 
-  
-  
+
+

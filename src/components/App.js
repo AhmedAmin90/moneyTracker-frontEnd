@@ -2,13 +2,11 @@ import React , {useState , useEffect} from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import './App.css';
-import axios from 'axios';
-import * as actions from '../src/actions/index'
-import Footer from './components/Footer';
-import Session from './components/Session'
-import Registration from './Registration';
-import Header from './components/Header';
-import * as helpers from './helpers'
+import * as actions from '../actions/index'
+import Footer from './Footer';
+import Session from '../containers/Session'
+import Header from './Header';
+import * as helpers from '../helpers'
 
 
 

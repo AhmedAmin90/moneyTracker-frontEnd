@@ -1,4 +1,4 @@
-import Item from '../../components/Item'
+import Item from '../../containers/Item'
 import { render, screen  } from '@testing-library/react';
 
 let renderedComponent;

@@ -5,11 +5,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import allReducers from './reducers/index';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import Home from './components/Home';
-import Registration from './Registration';
-import Single from './components/Single';
+import Single from './containers/Single';
 
 const store = createStore(allReducers,
   /* eslint-disable-next-line */

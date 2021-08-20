@@ -1,4 +1,4 @@
-import Box from '../../components/Box'
+import Box from '../../containers/Box'
 import { render, screen  } from '@testing-library/react';
 
 let renderedComponent;

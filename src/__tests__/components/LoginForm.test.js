@@ -1,4 +1,4 @@
-import LoginForm from '../../components/LoginForm'
+import LoginForm from '../../containers/LoginForm'
 import { render, screen  } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import {
