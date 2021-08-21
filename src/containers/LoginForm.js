@@ -1,34 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
-function LoginForm({text , errorMsg , handleChange , sendData}) {
-    return (
-        <div className="Login-forms">
-             <form className="Login-form">
-                <h3 className="Home-add-item ">{text}</h3>
-                <p className="error-msg">{errorMsg}</p>
-                <input className="login-form-username" type="text" onChange={handleChange} name="username" placeholder="username"/>
-                <input className="login-form-password" type="password" onChange={handleChange}  name="password" placeholder="password"/>
-                <button  data-testid='submit-btn' onClick={sendData}>Submit</button>
-            </form>
-        </div>
-    )
+function LoginForm({
+  text, errorMsg, handleChange, sendData,
+}) {
+  return (
+    <div className="Login-forms">
+      <form className="Login-form">
+        <h3 className="Home-add-item ">{text}</h3>
+        <p className="error-msg">{errorMsg}</p>
+        <input className="login-form-username" type="text" onChange={handleChange} name="username" placeholder="username" />
+        <input className="login-form-password" type="password" onChange={handleChange} name="password" placeholder="password" />
+        <button type="button" data-testid="submit-btn" onClick={sendData}>Submit</button>
+      </form>
+    </div>
+  );
 }
 
-
 LoginForm.defaultProps = {
-    text: '',
-    errorMsg: '',
-    handleChange: () => {},
-    sendData: () => {},
-  };
-  
-  LoginForm.propTypes = {
-    text: PropTypes.string,
-    errorMsg: PropTypes.string,
-    handleChange: PropTypes.func,
-    sendData: PropTypes.func,
-  };
-  
-export default LoginForm
+  text: '',
+  errorMsg: '',
+  handleChange: () => {},
+  sendData: () => {},
+};
+
+LoginForm.propTypes = {
+  text: PropTypes.string,
+  errorMsg: PropTypes.string,
+  handleChange: PropTypes.func,
+  sendData: PropTypes.func,
+};
+
+export default LoginForm;

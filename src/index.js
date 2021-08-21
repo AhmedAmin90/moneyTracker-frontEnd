@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle , react/jsx-indent */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -16,14 +17,13 @@ const store = createStore(allReducers,
 
 export default store;
 
-
 ReactDOM.render(
   (<Provider store={store}>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route exact path="/home/:id" render={(routeProps)=> <Home userData={routeProps}/>} />
-        <Route exact path="/items/:itemName" render={(routeProps) => <Single  itemData={routeProps} />} />
+        <Route exact path="/home/:id" render={(routeProps) => <Home userData={routeProps} />} />
+        <Route exact path="/items/:itemName" render={(routeProps) => <Single itemData={routeProps} />} />
       </Switch>
     </BrowserRouter>
    </Provider>),

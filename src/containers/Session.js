@@ -1,43 +1,43 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Session.css';
 
 import LoginForm from './LoginForm';
-const Session = ({sendData , text , errorMsg}) => {
-    const [input , setIntpu] = useState({
-        username: '',
-        password: ''
-    })
 
-    const handleChange = (e)=> {
-        setIntpu(pre => ({...pre , [e.target.name] : e.target.value}))
-    }
+const Session = ({ sendData, text, errorMsg }) => {
+  const [input, setIntpu] = useState({
+    username: '',
+    password: '',
+  });
 
-    const handleSendData = (e)=> {
-        sendData(e, input.username , input.password)
-    }
+  const handleChange = (e) => {
+    setIntpu((pre) => ({ ...pre, [e.target.name]: e.target.value }));
+  };
 
-    return (
-        <LoginForm 
-        text={text}
-        errorMsg={errorMsg}
-        handleChange={handleChange}
-        sendData={handleSendData} />
-    )
-}
+  const handleSendData = (e) => {
+    sendData(e, input.username, input.password);
+  };
+
+  return (
+    <LoginForm
+      text={text}
+      errorMsg={errorMsg}
+      handleChange={handleChange}
+      sendData={handleSendData}
+    />
+  );
+};
 
 Session.defaultProps = {
-    text: '',
-    errorMsg: '',
-    sendData: () => {},
-  };
-  
-  Session.propTypes = {
-    text: PropTypes.string,
-    errorMsg: PropTypes.string,
-    sendData: PropTypes.func,
-  };
-  
-  
+  text: '',
+  errorMsg: '',
+  sendData: () => {},
+};
 
-export default Session
+Session.propTypes = {
+  text: PropTypes.string,
+  errorMsg: PropTypes.string,
+  sendData: PropTypes.func,
+};
+
+export default Session;
