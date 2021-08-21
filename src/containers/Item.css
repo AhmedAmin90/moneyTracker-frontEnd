@@ -7,7 +7,8 @@
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     width: 200px;
-    margin: 25px;
+    height: auto;
+    margin: 20px;
     color: #5B8092;
     font-size: 10px;
 }

@@ -5,7 +5,7 @@ import './Item.css';
 const Item = ({ item }) => (
   <div className="Item">
     <i data-testid="items-div-icon" className={item.icon} />
-    <h1>{item.name}</h1>
+    <h1>{item.name.slice(0, 10)}</h1>
   </div>
 );
 

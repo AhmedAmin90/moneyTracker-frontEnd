@@ -13,7 +13,7 @@ describe('Test Box not clicked', () => {
     renderedComponent = render(
       <Provider store={store}>
         <Router>
-          <AddItems userId={'1'} />
+          <AddItems userId="1" />
         </Router>
       </Provider>,
     );

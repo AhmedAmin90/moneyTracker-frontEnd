@@ -17,3 +17,8 @@ export const content = (id) => ({
   type: 'CONTENT',
   id,
 });
+
+export const loading = (message) => ({
+  type: 'LOADING',
+  message,
+});
