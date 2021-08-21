@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Measurment.css';
 
 const Measurment = ({expense , removeExpense }) => {
@@ -19,5 +20,16 @@ const Measurment = ({expense , removeExpense }) => {
         </div>
     )
 }
+
+Measurment.defaultProps = {
+    expense: {},
+    removeExpense: () => {},
+  };
+  
+  Measurment.propTypes = {
+    expense: PropTypes.instanceOf(Object),
+    removeExpense: PropTypes.func,
+  };
+  
 
 export default Measurment

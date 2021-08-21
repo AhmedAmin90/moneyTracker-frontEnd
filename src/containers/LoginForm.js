@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+
 
 function LoginForm({text , errorMsg , handleChange , sendData}) {
     return (
@@ -14,4 +16,19 @@ function LoginForm({text , errorMsg , handleChange , sendData}) {
     )
 }
 
+
+LoginForm.defaultProps = {
+    text: '',
+    errorMsg: '',
+    handleChange: () => {},
+    sendData: () => {},
+  };
+  
+  LoginForm.propTypes = {
+    text: PropTypes.string,
+    errorMsg: PropTypes.string,
+    handleChange: PropTypes.func,
+    sendData: PropTypes.func,
+  };
+  
 export default LoginForm

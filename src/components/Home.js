@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 import AddItems from '../containers/AddItems';
 import * as actions from '../actions/index';
 import Summary from '../containers/Summary';
@@ -133,6 +134,18 @@ const Home = ({ userData, testData = false }) => {
         </div>
     )
 }
+
+Home.defaultProps = {
+    userData: {
+      history: {},
+      location: {},
+      match: { params: { id: 0 } },
+    },
+  };
+  
+  Home.propTypes = {
+    userData: PropTypes.instanceOf(Object),
+  };
 
 export default Home
 

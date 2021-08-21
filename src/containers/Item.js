@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import './Item.css'
 const Item = ({item}) => {
     return (
@@ -8,5 +9,15 @@ const Item = ({item}) => {
         </div>
     )
 }
+
+
+Item.defaultProps = {
+    item: {},
+  };
+  
+  Item.propTypes = {
+    item: PropTypes.instanceOf(Object),
+  };
+  
 
 export default Item

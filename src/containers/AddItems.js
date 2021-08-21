@@ -1,5 +1,6 @@
 import React  , {useState , useEffect}from 'react'
 import { useDispatch , useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../actions/index';
 
 
@@ -110,4 +111,12 @@ const AddItems = ({userId}) => {
     )
 }
 
+AddItems.defaultProps = {
+    userId: '0',
+  };
+  
+  AddItems.propTypes = {
+    userId: PropTypes.string,
+  };
+  
 export default AddItems

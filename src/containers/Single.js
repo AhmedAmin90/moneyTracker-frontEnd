@@ -2,6 +2,7 @@ import React  , {useState ,  useEffect}from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import { useDispatch , useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Measurment from './Measurment';
 import Summary from './Summary'
 import { Link } from 'react-router-dom';
@@ -125,5 +126,19 @@ const Single = ({itemData , testData}) => {
        
     )
 }
+
+
+Single.defaultProps = {
+    itemData: {
+      history: {},
+      location: {},
+      match: { params: { itemName: '' } },
+    }
+  };
+  
+  Single.propTypes = {
+    itemData: PropTypes.instanceOf(Object),
+  };
+  
 
 export default Single

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Summary.css'
 
 const Summary = ({total = 0 }) => {
@@ -18,5 +19,15 @@ const Summary = ({total = 0 }) => {
         </div>
     )
 }
+
+Summary.defaultProps = {
+    total: 0,
+  };
+  
+  Summary.propTypes = {
+    total: PropTypes.number,
+  };
+  
+  
 
 export default Summary

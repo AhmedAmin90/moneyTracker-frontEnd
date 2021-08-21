@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Box = ({box , handleClickBox}) => {
     const handleClick = ()=>{
@@ -18,4 +19,16 @@ const Box = ({box , handleClickBox}) => {
     )
 }
 
+
+
+Box.defaultProps = {
+    box: {},
+    handleClickBox: () => {},
+  };
+  
+  Box.propTypes = {
+    box: PropTypes.instanceOf(Object),
+    handleClickBox: PropTypes.func,
+  };
+  
 export default Box
