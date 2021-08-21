@@ -8,7 +8,6 @@ const Footer = () => {
     const dispatch = useDispatch()
     const contentId = useSelector(state=> state.contentId)
 
-    // const userId = useSelector(state=> state.userId)
     const [boxes , setBoxes] = useState([
         {id: 1 , icon:"fas fa-chart-bar", text:"Add Expenses" , clicked: false},
         {id: 2 , icon:"fas fa-chart-line", text:"Track Expenses" , clicked: true},
@@ -22,7 +21,8 @@ const Footer = () => {
         dispatch(actions.content(id))
         const otherBoxes = boxes.filter((box) => box.id !== id);
         otherBoxes.forEach((box) => {
-            box.clicked = false;
+            const anotherBox = box
+            anotherBox.clicked = false;
           });
         setBoxes([...boxes]);
     }

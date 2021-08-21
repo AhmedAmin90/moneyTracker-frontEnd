@@ -1,4 +1,4 @@
-import React  , {useState , useEffect}from 'react'
+import React  , {useState }from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/index';
@@ -11,6 +11,7 @@ const AddItems = ({userId}) => {
         icons: '',
         item: ''
     });
+
     const handleChange = (e)=> {
         setValue(pre => ({...pre , [e.target.name] : e.target.value}))
     }
@@ -20,7 +21,7 @@ const AddItems = ({userId}) => {
           method: 'post',
           body: JSON.stringify({ name: value.item, user_id: userId, icon: value.icons}),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        }).then((res) => res.json()).then((res) => {console.log(res)
+        }).then((res) => res.json()).then((res) => {
             if (res.name && res.name.length === 1) {
                 dispatch(actions.error(res.name[0]))
             }
@@ -105,7 +106,7 @@ const AddItems = ({userId}) => {
                     
                 </div>
             </form>
-            <button className="AddItem-btn" onClick={sendData} >Add item</button>
+            <button type="button"  className="AddItem-btn" onClick={sendData} >Add item</button>
 
         </div>
     )

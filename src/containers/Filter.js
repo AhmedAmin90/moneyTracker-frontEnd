@@ -55,7 +55,7 @@ const Filter = ({ testData }) => {
             method: 'post',
             body: JSON.stringify({ expense: value.expense, item_id: itemId }),
             headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        }).then((res) => res.json()).then((res) => { console.log(res) });
+        })
         input.current.value = ''
     }
 
