@@ -38,7 +38,7 @@ const AddItems = ({ userId }) => {
     <div className="AddItem">
       <form className="AddItem-form">
         <p className="error-msg">{errorMsg}</p>
-        <input className="AddItem-text-input" type="text" name="item" onChange={handleChange} />
+        <input className="AddItem-text-input" type="text" name="item" onChange={handleChange} placeholder="Item Name" />
         <div className="AddItem-form-icons">
           <div className="Icon-wrap">
             <input onChange={handleChange} type="radio" name="icons" value="fas fa-passport" />
