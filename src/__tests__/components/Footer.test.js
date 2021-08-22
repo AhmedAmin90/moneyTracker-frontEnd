@@ -19,17 +19,22 @@ describe('Footer', () => {
     );
   });
 
-  it('Test', () => {
+  it('Presnesce of add expenses page', () => {
     const element = screen.getByText(/Add Expenses/i);
     expect(element).toBeTruthy();
   });
-  it('Test', () => {
+  it('Presence of sing out link', () => {
     const element = screen.getByText(/Sign out/i);
     expect(element).toBeTruthy();
   });
-  it('Test', () => {
+  it('Presnece of element with footer class', () => {
     const { container } = renderedComponent;
     const div = container.querySelector('.Footer');
     expect(div).toBeInTheDocument();
+  });
+  it('Not presence of header', () => {
+    const { container } = renderedComponent;
+    const nav = container.querySelector('nav');
+    expect(nav).not.toBeInTheDocument();
   });
 });

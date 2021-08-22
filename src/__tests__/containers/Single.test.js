@@ -51,4 +51,9 @@ describe('Data for mock', () => {
     const element = screen.getByText(/25/i);
     expect(element).toBeInTheDocument();
   });
+
+  it('Presnece of single footer', () => {
+    const element = screen.getByText(/Back to Your Dashboard/i);
+    expect(element).toBeInTheDocument();
+  });
 });

@@ -80,6 +80,12 @@ npm install
 npm start
 ```
 
+5.To run tests:
+
+```bash
+npm run test
+```
+
 # Notes:
 1. I followed the design:
 https://www.behance.net/gallery/13271423/Bodytrackit-An-iOs-app-Branding-UX-and-UI

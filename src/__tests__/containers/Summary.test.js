@@ -19,17 +19,18 @@ describe('Measurment', () => {
     );
   });
 
-  it('Test', () => {
+  it('Presnce of total number', () => {
     const { container } = renderedComponent;
     const expenseParagraph = container.querySelector('.Summary-percentage-circle p');
     expect(expenseParagraph).toBeInTheDocument();
     expect(expenseParagraph).toHaveTextContent('10');
   });
-  it('Test', () => {
+  it('Presnece of current date with specific format', () => {
     const element = screen.getByText(currentDate);
     expect(element).toBeTruthy();
+    expect(element).not.toHaveTextContent('2021-08-19T12:25:38.451Z');
   });
-  it('Test', () => {
+  it('Presence of summary div', () => {
     const { container } = renderedComponent;
     const div = container.querySelector('.Summary');
     expect(div).toBeInTheDocument();

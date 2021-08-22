@@ -19,17 +19,27 @@ describe('LoginForm', () => {
     );
   });
 
-  it('Test', () => {
+  it('Presnsece of text from props', () => {
     const element = screen.getByText(/Test text/i);
     expect(element).toBeTruthy();
   });
-  it('Test', () => {
+  it('Presnece of error msg', () => {
     const element = screen.getByText(/Error msg/i);
     expect(element).toBeTruthy();
   });
-  it('Test', () => {
+  it('Presence of loging form div', () => {
     const { container } = renderedComponent;
     const div = container.querySelector('.Login-forms');
     expect(div).toBeInTheDocument();
+  });
+  it('Presence of loging form div', () => {
+    const { container } = renderedComponent;
+    const div = container.querySelector('.Login-forms');
+    expect(div).toBeInTheDocument();
+  });
+  it('Do not render footer', () => {
+    const { container } = renderedComponent;
+    const div = container.querySelector('.Footer');
+    expect(div).not.toBeInTheDocument();
   });
 });

@@ -20,11 +20,11 @@ describe('Test Box not clicked', () => {
     />);
   });
 
-  it('Test', () => {
+  it('Presence of add expenses', () => {
     const element = screen.getByText(/Add Expenses/i);
     expect(element).toBeInTheDocument();
   });
-  it('Test', () => {
+  it('Class with footer-box without clicked', () => {
     const { container } = renderedComponent;
     const div = container.querySelector('.Footer-box');
     expect(div).toBeInTheDocument();
@@ -41,11 +41,11 @@ describe('Test Box not clicked', () => {
     />);
   });
 
-  it('Test', () => {
+  it('Presnece of track expenses', () => {
     const element = screen.getByText(/Track Expenses/i);
     expect(element).toBeInTheDocument();
   });
-  it('Test', () => {
+  it('Class with footer-box-clicked', () => {
     const { container } = renderedComponent;
     const div = container.querySelector('.Footer-box-clicked');
     expect(div).toBeInTheDocument();

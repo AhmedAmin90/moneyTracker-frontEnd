@@ -3,7 +3,7 @@ import './Header.css';
 
 function Header() {
   return (
-    <nav>
+    <nav data-testid="nav">
       <p>Money Tracker</p>
     </nav>
   );

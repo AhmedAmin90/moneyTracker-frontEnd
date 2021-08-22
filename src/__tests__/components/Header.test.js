@@ -6,8 +6,11 @@ describe('Header', () => {
     render(<Header />);
   });
 
-  it('Test', () => {
+  it('Presence of header text', () => {
     const element = screen.getByText(/Money Tracker/i);
     expect(element).toBeTruthy();
+  });
+  it('Header in nav element', () => {
+    expect(screen.getByTestId('nav')).toBeInTheDocument();
   });
 });

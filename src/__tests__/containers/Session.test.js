@@ -86,4 +86,10 @@ describe('rendered App', () => {
     fireEvent.change(input, { target: { value: '123456' } });
     expect(input.value).toEqual('123456');
   });
+  test('Input change with specific target value', () => {
+    const { container } = renderedComponent;
+    const input = container.querySelector('.login-form-password');
+    fireEvent.change(input, { target: { value: '123456' } });
+    expect(input.value).not.toEqual('another value');
+  });
 });
