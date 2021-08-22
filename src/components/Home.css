@@ -97,6 +97,10 @@
     justify-content: space-between;
   }
 
+  .intro-paragraph{
+    font-size: 15px;
+  }
+
   .AddItem-form-icons {
     width: 70%;
   }
