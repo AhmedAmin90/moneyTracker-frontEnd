@@ -25,27 +25,15 @@ const Home = ({ userData, testData = false }) => {
   const selectedId = userData.match.params.id;
   const contentId = useSelector((state) => state.contentId);
   const [total, setTotal] = useState(0);
-  // const [axiosRes, setAxiosRes] = useState('');
 
   useEffect(() => {
-    // if (!testData) {
-    //     var cancelToken = axios.CancelToken;
-    //     var source = cancelToken.source();
-    //     setAxiosRes("axios request created");
-    // }
     const getData = async () => {
       try {
         const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`);
-        // , {
-        //     cancelToken: source.token,
-        // });
-        // setAxiosRes(res)
-        // console.log(res)
+
         const data = await res.data;
         setTotal(data.total);
         if (!userId || itemsList.length !== 0) {
-          //  Length to avoid rerender dispatching if i back to this page again
-          //  userid to avoid dispatching items if some one add user id to the path without loging
           return;
         }
 
@@ -61,9 +49,6 @@ const Home = ({ userData, testData = false }) => {
     };
     if (!testData) {
       getData();
-      // return () => {
-      //     source.cancel('axios request cancelled');
-      // };
     }
   }, []);
 

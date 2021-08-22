@@ -16,7 +16,6 @@ const Single = ({ itemData, testData }) => {
     userId = testData.user.id;
   }
 
-  // For Adding new Measurment:
   const [expense, setExpense] = useState(0);
   const handleChange = (e) => {
     setExpense(e.target.value);
@@ -58,7 +57,6 @@ const Single = ({ itemData, testData }) => {
     return <Redirect to="/" />;
   }
 
-  // For sending new Measurment to database:
   const sendData = () => {
     fetch('https://pacific-mountain-97932.herokuapp.com/api/v1/expenses', {
       method: 'post',

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Session.css';
-
 import LoginForm from './LoginForm';
 
 const Session = ({ sendData, text, errorMsg }) => {

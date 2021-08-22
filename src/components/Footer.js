@@ -6,7 +6,6 @@ import './Footer.css';
 
 const Footer = () => {
   const dispatch = useDispatch();
-  // const contentId = useSelector((state) => state.contentId);
 
   const [boxes, setBoxes] = useState([
     {

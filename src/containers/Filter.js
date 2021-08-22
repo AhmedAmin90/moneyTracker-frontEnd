@@ -20,11 +20,6 @@ const Filter = ({ testData }) => {
   const input = useRef();
 
   useEffect(() => {
-    // if (!testData) {
-    //   const cancelToken = axios.CancelToken;
-    //   var source = cancelToken.source();
-    //   setAxiosRes('axios request created');
-    // }
     const getItemID = async () => {
       const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`);
       const userItems = await res.data.items;
@@ -35,9 +30,6 @@ const Filter = ({ testData }) => {
 
     if (!testData) {
       getItemID();
-      // return () => {
-      //   source.cancel('axios request cancelled');
-      // };
     }
   });
 
