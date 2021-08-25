@@ -1,9 +1,10 @@
-/* eslint-disable */
 /* eslint-disable import/no-cycle , react/jsx-indent */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import allReducers from './reducers/index';
@@ -11,7 +12,7 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import Home from './components/Home';
 import Single from './containers/Single';
-import * as actions from './actions/index'
+import * as actions from './actions/index';
 
 const store = createStore(allReducers,
   /* eslint-disable-next-line */
@@ -19,11 +20,10 @@ const store = createStore(allReducers,
 
 export default store;
 
-
-window.onload = async function () {
+window.onload = async () => {
   const userId = localStorage.getItem('userId');
-  await store.dispatch(actions.login({id: userId}));
-  return <Redirect to={`/home/${userId}`} />
+  await store.dispatch(actions.login({ id: userId }));
+  return <Redirect to={`/home/${userId}`} />;
 };
 
 ReactDOM.render(

@@ -1,11 +1,10 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createNewItem } from '../helpers';
 
 const AddItems = ({ userId }) => {
-
   const errorMsg = useSelector((state) => state.errorMsg);
   const [value, setValue] = useState({
     icons: '',
@@ -16,11 +15,11 @@ const AddItems = ({ userId }) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
-  const sendData = ()=>{
-    createNewItem(value.item , userId, value.icons);
+  const sendData = () => {
+    createNewItem(value.item, userId, value.icons);
     document.querySelector('.AddItem-text-input').value = '';
     setValue((pre) => ({ ...pre, item: '' }));
-  }
+  };
 
   return (
     <div className="AddItem">
@@ -131,9 +130,9 @@ const AddItems = ({ userId }) => {
 
         </div>
       </form>
-      
+
       {/* <Link  to={`/items/${value.item}`} > */}
-          <button type="button" className="AddItem-btn" onClick={sendData}>Add item</button>
+      <button type="button" className="AddItem-btn" onClick={sendData}>Add item</button>
       {/* </Link> */}
 
     </div>

@@ -1,7 +1,7 @@
-/* eslint-disable  */
+/* eslint-disable import/no-cycle , react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import {sendExpenseData, setTotal} from '../helpers'
+import { sendExpenseData, setTotal } from '../helpers';
 import './Filter.css';
 
 const Filter = ({ testData }) => {
@@ -18,17 +18,17 @@ const Filter = ({ testData }) => {
   const [itemId, setItemId] = useState('');
   const input = useRef();
 
-  useEffect(()=>{
+  useEffect(() => {
     const selectedItem = itemsList.find((item) => item.name === value.item);
     setItemId(selectedItem.id);
-  })
+  });
 
   const handleChange = (e) => {
     setValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-  const sendData = async ()=>  {
-    await sendExpenseData(value.expense , itemId)
+  const sendData = async () => {
+    await sendExpenseData(value.expense, itemId);
     input.current.value = '';
     setTotal(userId);
   };

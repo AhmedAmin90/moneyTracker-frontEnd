@@ -1,9 +1,9 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle , react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import {sendExpenseData , getExpenses , removeItemById} from '../helpers'
+import { sendExpenseData, getExpenses, removeItemById } from '../helpers';
 import Measurment from './Measurment';
 import Summary from './Summary';
 import './Single.css';
@@ -11,54 +11,41 @@ import './Single.css';
 const Single = ({ itemData, testData }) => {
   const { itemName } = itemData.match.params;
   const savedUserId = localStorage.getItem('userId');
-  const savedItemName = itemName || localStorage.getItem('itemName') 
+  const savedItemName = itemName || localStorage.getItem('itemName');
   let userId = useSelector((state) => state.userId);
-  let itemId = useSelector((state) => state.itemId);
-  let total = useSelector(state=> state.total)
+  const itemId = useSelector((state) => state.itemId);
+  const total = useSelector((state) => state.total);
   let expenses = useSelector((state) => state.expenses[0]) || [];
   if (testData) {
     userId = testData.user.id;
-    expenses = testData.expenses
+    expenses = testData.expenses;
   }
-
-
 
   const [expense, setExpense] = useState(0);
   const handleChange = (e) => {
     setExpense(e.target.value);
   };
 
-  if ( !savedUserId ) {
+  if (!savedUserId) {
     return <Redirect to="/" />;
   }
 
   useEffect(() => {
     if (!testData) {
-      localStorage.setItem('itemName' , itemName)
-      getExpenses(savedUserId , savedItemName  );
+      localStorage.setItem('itemName', itemName);
+      getExpenses(savedUserId, savedItemName);
     }
-  } , []);
-
-  
+  }, []);
 
   const sendData = () => {
-    sendExpenseData(expense ,itemId);
-    getExpenses(savedUserId , savedItemName );
+    sendExpenseData(expense, itemId);
+    getExpenses(savedUserId, savedItemName);
   };
 
   const handleRemoveExpense = (id) => {
-    removeItemById(id)
-    getExpenses(savedUserId , savedItemName );
+    removeItemById(id);
+    getExpenses(savedUserId, savedItemName);
   };
-
-
- 
-// window.onload = async function () {
-//   const userId = localStorage.getItem('userId');
-//   await store.dispatch(actions.login({id: userId}));
-//   const savedItemName = localStorage.getItem('itemName')
-//   return <Redirect to={`/items/${savedItemName}`} />  
-// };
 
   return (
 
@@ -77,14 +64,14 @@ const Single = ({ itemData, testData }) => {
 
       <div>
         <h1 className="Home-add-item">{itemName}</h1>
-          {expenses.map((exp) => (
-             <Measurment
-              key={exp.id}
-              id={exp.id}
-              expense={exp}
-              removeExpense={handleRemoveExpense}
-            />
-          ))}
+        {expenses.map((exp) => (
+          <Measurment
+            key={exp.id}
+            id={exp.id}
+            expense={exp}
+            removeExpense={handleRemoveExpense}
+          />
+        ))}
       </div>
       <div className="Single-footer">
         <Link to={`/home/${userId}`}>  Back to Your Dashboard</Link>

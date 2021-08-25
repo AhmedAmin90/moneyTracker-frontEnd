@@ -1,10 +1,9 @@
 /* eslint-disable import/no-cycle , react/prop-types ,  consistent-return */
-/* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {getData , setTotal} from '../helpers'
+import { getData, setTotal } from '../helpers';
 import AddItems from '../containers/AddItems';
 import * as actions from '../actions/index';
 import Summary from '../containers/Summary';
@@ -16,12 +15,11 @@ import Header from './Header';
 
 const Home = ({ userData, testData = false }) => {
   const dispatch = useDispatch();
-  let userId = useSelector((state) => state.userId);
-  let total = useSelector((state) => state.total);
+  const total = useSelector((state) => state.total);
   let itemsList = useSelector((state) => state.items);
-  const savedUserId = localStorage.getItem('userId')
+  let savedUserId = localStorage.getItem('userId');
   if (testData) {
-    userId = testData.user.id;
+    savedUserId = testData.user.id;
     itemsList = testData.items;
     dispatch(actions.content(2));
   }
@@ -29,15 +27,15 @@ const Home = ({ userData, testData = false }) => {
   const contentId = useSelector((state) => state.contentId);
 
   useEffect(() => {
-    if (itemsList.length !== 0 ) {
-          return;
-        }
+    if (itemsList.length !== 0) {
+      return;
+    }
     if (!testData) {
       getData(savedUserId);
     }
   }, []);
 
-  if ( !savedUserId ) {
+  if (!savedUserId) {
     return <Redirect to="/" />;
   }
 
@@ -104,8 +102,8 @@ const Home = ({ userData, testData = false }) => {
       );
     }
     if (contentId === 4) {
-      localStorage.setItem('userId' , '')
-      localStorage.setItem('itemName' , '')
+      localStorage.setItem('userId', '');
+      localStorage.setItem('itemName', '');
       window.location.reload();
     }
   };

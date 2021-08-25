@@ -1,4 +1,4 @@
-/* eslint-disable  */
+/* eslint-disable import/no-cycle */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -9,13 +9,12 @@ import Session from '../containers/Session';
 import Header from './Header';
 import * as helpers from '../helpers';
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.userId);
   const contentId = useSelector((state) => state.contentId);
   const errorMsg = useSelector((state) => state.errorMsg);
-  const savedUserId = localStorage.getItem('userId')
-
+  const savedUserId = localStorage.getItem('userId');
 
   const [login, setLogin] = useState('Sign In');
 
@@ -37,21 +36,23 @@ function App() {
   };
 
   const loginBtn = login === 'Sign In' ? <Session sendData={helpers.sendUserData} errorMsg={errorMsg} text="Sign in - Track your expenses now !" /> : <Session sendData={helpers.createUser} errorMsg={errorMsg} text="Sign up with us - Track your expenses now !" />;
-  const app = <div className="App-sign" >
-  <Header />
-  <button type="button" className="Session-btn" onClick={handleClick}>{login === 'Sign In' ? 'Sign Up' : 'Sign In'}</button>
-  <div>
-    {loginBtn}
-  </div>
-  <Footer />
-</div>
-  const renderData =  savedUserId === '' ? app: <Redirect to={`/home/${savedUserId}`} />
+  const app = (
+    <div className="App-sign">
+      <Header />
+      <button type="button" className="Session-btn" onClick={handleClick}>{login === 'Sign In' ? 'Sign Up' : 'Sign In'}</button>
+      <div>
+        {loginBtn}
+      </div>
+      <Footer />
+    </div>
+  );
+  const renderData = savedUserId === '' ? app : <Redirect to={`/home/${savedUserId}`} />;
 
   return (
-      <div className="App">
-        {renderData}
-      </div>
+    <div className="App">
+      {renderData}
+    </div>
   );
-}
+};
 
 export default App;
