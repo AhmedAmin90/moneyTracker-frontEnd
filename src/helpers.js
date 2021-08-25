@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle */
+/* eslint-disable */
 import * as actions from './actions/index';
 import store from './index';
 
@@ -48,4 +48,14 @@ export const createUser = async (e, username, password) => {
       store.dispatch(actions.content(2));
     }
   });
+};
+
+
+export  const sendExpenseData = async (expense , itemId) => {
+  await fetch('https://pacific-mountain-97932.herokuapp.com/api/v1/expenses', {
+    method: 'post',
+    body: JSON.stringify({ expense: expense, item_id: itemId }),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  });
+  // input.current.value = '';
 };

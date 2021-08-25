@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types ,  consistent-return */
+/* eslint-disable  */
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
+import {sendExpenseData} from '../helpers'
 import './Filter.css';
 
 const Filter = ({ testData }) => {
@@ -11,7 +11,6 @@ const Filter = ({ testData }) => {
     userId = testData.user.id;
     itemsList = testData.items;
   }
-  // const [axiosRes, setAxiosRes] = useState('');
   const [value, setValue] = useState({
     item: itemsList[0].name,
     expense: 0,
@@ -19,30 +18,17 @@ const Filter = ({ testData }) => {
   const [itemId, setItemId] = useState('');
   const input = useRef();
 
-  useEffect(() => {
-    const getItemID = async () => {
-      const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`);
-      const userItems = await res.data.items;
-      // console.log(res.data);
-      const selectedItem = userItems.find((item) => item.name === value.item);
-      setItemId(selectedItem.id);
-    };
-
-    if (!testData) {
-      getItemID();
-    }
-  });
+  useEffect(()=>{
+    const selectedItem = itemsList.find((item) => item.name === value.item);
+    setItemId(selectedItem.id);
+  })
 
   const handleChange = (e) => {
     setValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-  const sendData = async () => {
-    await fetch('https://pacific-mountain-97932.herokuapp.com/api/v1/expenses', {
-      method: 'post',
-      body: JSON.stringify({ expense: value.expense, item_id: itemId }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    });
+  const sendData = ()=> {
+    sendExpenseData(value.expense , itemId)
     input.current.value = '';
   };
 
