@@ -1,5 +1,6 @@
 /* eslint-disable */
 import * as actions from './actions/index';
+import axios from 'axios';
 import store from './index';
 
 export const sendUserData = async (e, username, password) => {
@@ -57,5 +58,35 @@ export  const sendExpenseData = async (expense , itemId) => {
     body: JSON.stringify({ expense: expense, item_id: itemId }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   });
-  // input.current.value = '';
 };
+
+
+export const getExpenses = async(userId , itemName = '' )=>{
+    const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${userId}`);
+    const userItems = await res.data.items;
+    const expRes = await axios.get('https://pacific-mountain-97932.herokuapp.com/api/v1/expenses');
+    const expData = await expRes.data;
+    const selectedItem = await userItems.find((item) => item.name === itemName);
+    store.dispatch(actions.itemId(selectedItem.id))
+    const expArray = await expData.filter((exp) => exp.item_id === selectedItem.id);
+    store.dispatch(actions.expenses(expArray))
+    let sum = 0;
+    expArray.forEach(exp => {
+      sum = sum + exp.expense
+    });
+    console.log(sum)
+    store.dispatch(actions.total(sum))
+
+    // setExpenses(expArray);
+    // setItemId(selectedItem.id);
+    // const sumAll = expenses.map((exp) => sum += exp.expense);
+    // setTotal(sumAll[sumAll.length - 1]);
+
+};
+
+
+export const removeItemById = (id)=>{
+  fetch(`https://pacific-mountain-97932.herokuapp.com/api/v1/expenses/${id}`, {
+    method: 'DELETE',
+  });
+}

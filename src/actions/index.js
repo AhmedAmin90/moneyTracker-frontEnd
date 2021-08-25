@@ -22,3 +22,18 @@ export const loading = (message) => ({
   type: 'LOADING',
   message,
 });
+
+export const expenses = (exps) => ({
+  type: 'EXPENSES',
+  exps,
+});
+
+export const itemId = (id) => ({
+  type: 'ITEMID',
+  id,
+});
+
+export const total = (num) => ({
+  type: 'TOTAL',
+  num,
+});

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types ,  consistent-return */
+/* eslint-disable import/no-cycle , react/prop-types ,  consistent-return */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
