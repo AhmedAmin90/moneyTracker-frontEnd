@@ -46,7 +46,7 @@ const App = () => {
       <Footer />
     </div>
   );
-  const renderData = savedUserId === '' ? app : <Redirect to={`/home/${savedUserId}`} />;
+  const renderData = savedUserId === null || savedUserId === '' ? app : <Redirect to={`/home/${savedUserId}`} />;
 
   return (
     <div className="App">

@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle , react/prop-types ,  consistent-return */
+/* eslint-disable  import/no-cycle , react/prop-types, consistent-return */
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
@@ -23,6 +24,9 @@ const Home = ({ userData, testData = false }) => {
     itemsList = testData.items;
     dispatch(actions.content(2));
   }
+  if (!savedUserId) {
+    return <Redirect to="/" />;
+  }
   const selectedId = userData.match.params.id;
   const contentId = useSelector((state) => state.contentId);
 
@@ -34,10 +38,6 @@ const Home = ({ userData, testData = false }) => {
       getData(savedUserId);
     }
   }, []);
-
-  if (!savedUserId) {
-    return <Redirect to="/" />;
-  }
 
   const addMeasurment = itemsList.length !== 0 ? (
     <div>
@@ -105,6 +105,7 @@ const Home = ({ userData, testData = false }) => {
       localStorage.setItem('userId', '');
       localStorage.setItem('itemName', '');
       window.location.reload();
+      return <Redirect to="/" />;
     }
   };
 

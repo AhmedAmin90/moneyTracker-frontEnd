@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle , react/jsx-indent */
+/* eslint-disable  import/no-cycle , react/jsx-indent , react/display-name */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -20,9 +20,13 @@ const store = createStore(allReducers,
 
 export default store;
 
-window.onload = async () => {
+window.onload = () => {
   const userId = localStorage.getItem('userId');
-  await store.dispatch(actions.login({ id: userId }));
+  if (userId === null) {
+    return <Redirect to="/" />;
+  }
+
+  store.dispatch(actions.login({ id: userId }));
   return <Redirect to={`/home/${userId}`} />;
 };
 
