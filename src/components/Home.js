@@ -19,6 +19,7 @@ const Home = ({ userData, testData = false }) => {
   let userId = useSelector((state) => state.userId);
   let total = useSelector((state) => state.total);
   let itemsList = useSelector((state) => state.items);
+  const savedUserId = localStorage.getItem('userId')
   if (testData) {
     userId = testData.user.id;
     itemsList = testData.items;
@@ -26,18 +27,17 @@ const Home = ({ userData, testData = false }) => {
   }
   const selectedId = userData.match.params.id;
   const contentId = useSelector((state) => state.contentId);
-  // const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    if (!userId || itemsList.length !== 0) {
+    if (itemsList.length !== 0 ) {
           return;
         }
     if (!testData) {
-      getData(userId);
+      getData(savedUserId);
     }
   }, []);
 
-  if (!userId) {
+  if ( !savedUserId ) {
     return <Redirect to="/" />;
   }
 
@@ -92,7 +92,7 @@ const Home = ({ userData, testData = false }) => {
       return addMeasurment;
     }
     if (contentId === 2) {
-      setTotal(userId);
+      setTotal(savedUserId);
       return itemsPresence;
     }
     if (contentId === 3) {
@@ -104,6 +104,8 @@ const Home = ({ userData, testData = false }) => {
       );
     }
     if (contentId === 4) {
+      localStorage.setItem('userId' , '')
+      localStorage.setItem('itemName' , '')
       window.location.reload();
     }
   };

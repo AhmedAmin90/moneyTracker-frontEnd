@@ -10,7 +10,8 @@ import './Single.css';
 
 const Single = ({ itemData, testData }) => {
   const { itemName } = itemData.match.params;
-
+  const savedUserId = localStorage.getItem('userId');
+  const savedItemName = itemName || localStorage.getItem('itemName') 
   let userId = useSelector((state) => state.userId);
   let itemId = useSelector((state) => state.itemId);
   let total = useSelector(state=> state.total)
@@ -27,26 +28,37 @@ const Single = ({ itemData, testData }) => {
     setExpense(e.target.value);
   };
 
- 
-  useEffect(() => {
-    if (!testData) {
-      getExpenses(userId , itemName  );
-    }
-  } , []);
-
-  if (!userId) {
+  if ( !savedUserId ) {
     return <Redirect to="/" />;
   }
 
+  useEffect(() => {
+    if (!testData) {
+      localStorage.setItem('itemName' , itemName)
+      getExpenses(savedUserId , savedItemName  );
+    }
+  } , []);
+
+  
+
   const sendData = () => {
     sendExpenseData(expense ,itemId);
-    getExpenses(userId , itemName );
+    getExpenses(savedUserId , savedItemName );
   };
 
   const handleRemoveExpense = (id) => {
     removeItemById(id)
-    getExpenses(userId , itemName );
+    getExpenses(savedUserId , savedItemName );
   };
+
+
+ 
+// window.onload = async function () {
+//   const userId = localStorage.getItem('userId');
+//   await store.dispatch(actions.login({id: userId}));
+//   const savedItemName = localStorage.getItem('itemName')
+//   return <Redirect to={`/items/${savedItemName}`} />  
+// };
 
   return (
 

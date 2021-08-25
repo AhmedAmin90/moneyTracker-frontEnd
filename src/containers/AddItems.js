@@ -1,9 +1,13 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as actions from '../actions/index';
+import { createNewItem } from '../helpers';
+import { Redirect , Link , useHistory} from 'react-router-dom';
 
 const AddItems = ({ userId }) => {
+  const history = useHistory();
+
   const dispatch = useDispatch();
   const errorMsg = useSelector((state) => state.errorMsg);
   const [value, setValue] = useState({
@@ -15,24 +19,9 @@ const AddItems = ({ userId }) => {
     setValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-  const sendData = async () => {
-    await fetch('https://pacific-mountain-97932.herokuapp.com/api/v1/items', {
-      method: 'post',
-      body: JSON.stringify({ name: value.item, user_id: userId, icon: value.icons }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    }).then((res) => res.json()).then((res) => {
-      if (res.name && res.name.length === 1) {
-        dispatch(actions.error(res.name[0]));
-      } else if (!res.name) {
-        dispatch(actions.error(res.user_id[0]));
-      } else {
-        dispatch(actions.items({ name: value.item, user_id: userId, icon: value.icons }));
-        dispatch(actions.error(''));
-        document.querySelector('.AddItem-text-input').value = '';
-        setValue((pre) => ({ ...pre, item: '' }));
-      }
-    });
-  };
+  const sendData = ()=>{
+    createNewItem(value.item , userId, value.icons);
+  }
 
   return (
     <div className="AddItem">
@@ -143,7 +132,10 @@ const AddItems = ({ userId }) => {
 
         </div>
       </form>
-      <button type="button" className="AddItem-btn" onClick={sendData}>Add item</button>
+      
+      {/* <Link  to={`/items/${value.item}`} > */}
+          <button type="button" className="AddItem-btn" onClick={sendData}>Add item</button>
+      {/* </Link> */}
 
     </div>
   );

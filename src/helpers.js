@@ -2,6 +2,8 @@
 import * as actions from './actions/index';
 import axios from 'axios';
 import store from './index';
+import { Redirect } from 'react-router';
+
 
 export const sendUserData = async (e, username, password) => {
   store.dispatch(actions.error(''));
@@ -12,11 +14,13 @@ export const sendUserData = async (e, username, password) => {
     body: JSON.stringify({ username, password }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   }).then((res) => res.json()).then((res) => {
+    console.log(res);
     if (res.message) {
       store.dispatch(actions.loading(''));
       store.dispatch(actions.error(res.message));
     }
     if (res.id) {
+      localStorage.setItem('userId', res.id);
       store.dispatch(actions.login(res));
       store.dispatch(actions.error(''));
       store.dispatch(actions.loading(''));
@@ -33,6 +37,7 @@ export const createUser = async (e, username, password) => {
     body: JSON.stringify({ username, password, password_confirmation: password }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   }).then((res) => res.json()).then((res) => {
+   
     if (res.errors) {
       if (res.errors.username) {
         store.dispatch(actions.loading(''));
@@ -43,6 +48,7 @@ export const createUser = async (e, username, password) => {
       }
     }
     if (res.id) {
+      localStorage.setItem('userId', res.id);
       store.dispatch(actions.login(res));
       store.dispatch(actions.error(''));
       store.dispatch(actions.loading(''));
@@ -56,7 +62,7 @@ export const getData = async (selectedId)=>{
       const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`);
       const data = await res.data;
       // store.dispatch(actions.total(data.total))
-      data.items.map((item) => (
+      (data.items || []).map((item) => (
         store.dispatch(actions.items(item))
       ));
 } 
@@ -102,3 +108,24 @@ export const removeItemById = (id)=>{
     method: 'DELETE',
   });
 }
+
+
+export const createNewItem = async (itemName , userId, itemIcon) => {
+  const getItems = await axios.get('https://pacific-mountain-97932.herokuapp.com/api/v1/items');
+  const itemsLength = await getItems.data.length
+  await fetch('https://pacific-mountain-97932.herokuapp.com/api/v1/items', {
+    method: 'post',
+    body: JSON.stringify({ name: itemName, user_id: userId, icon: itemIcon }),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  }).then((res) => res.json()).then((res) => {
+    if (res.name && res.name.length === 1) {
+      store.dispatch(actions.error(res.name[0]));
+    } else if (!res.name) {
+      store.dispatch(actions.error(res.user_id[0]));
+    } else {
+      store.dispatch(actions.items({ name: itemName, user_id: userId, icon: itemIcon , id: itemsLength + 1 }));
+      store.dispatch(actions.error('')); 
+    }
+
+  });
+};

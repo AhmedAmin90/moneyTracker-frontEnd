@@ -26,7 +26,6 @@
 .AddItem {
   display: flex;
   flex-direction: column;
-  padding: 20px;
 }
 
 .AddItem-form {
@@ -102,11 +101,11 @@
   }
 
   .AddItem-form-icons {
-    width: 70%;
+    width: 90%;
   }
 
   .Icon-wrap {
-    width: 30%;
+    width: 25%;
     margin: 5px 0;
   }
 

@@ -1,6 +1,9 @@
 .App {
   height: 100%;
-  text-align: center;
+}
+
+.App-sign {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
