@@ -1,9 +1,10 @@
 /* eslint-disable import/no-cycle , react/prop-types ,  consistent-return */
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import {getData , setTotal} from '../helpers'
 import AddItems from '../containers/AddItems';
 import * as actions from '../actions/index';
 import Summary from '../containers/Summary';
@@ -16,6 +17,7 @@ import Header from './Header';
 const Home = ({ userData, testData = false }) => {
   const dispatch = useDispatch();
   let userId = useSelector((state) => state.userId);
+  let total = useSelector((state) => state.total);
   let itemsList = useSelector((state) => state.items);
   if (testData) {
     userId = testData.user.id;
@@ -24,31 +26,14 @@ const Home = ({ userData, testData = false }) => {
   }
   const selectedId = userData.match.params.id;
   const contentId = useSelector((state) => state.contentId);
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`);
-
-        const data = await res.data;
-        setTotal(data.total);
-        if (!userId || itemsList.length !== 0) {
+    if (!userId || itemsList.length !== 0) {
           return;
         }
-
-        data.items.map((item) => (
-          dispatch(actions.items(item))
-        ));
-      } catch (err) {
-        if (axios.isCancel(err)) {
-          return 'axios request cancelled';
-        }
-        throw err;
-      }
-    };
     if (!testData) {
-      getData();
+      getData(userId);
     }
   }, []);
 
@@ -107,6 +92,7 @@ const Home = ({ userData, testData = false }) => {
       return addMeasurment;
     }
     if (contentId === 2) {
+      setTotal(userId);
       return itemsPresence;
     }
     if (contentId === 3) {

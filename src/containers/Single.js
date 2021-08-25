@@ -14,7 +14,7 @@ const Single = ({ itemData, testData }) => {
   let userId = useSelector((state) => state.userId);
   let itemId = useSelector((state) => state.itemId);
   let total = useSelector(state=> state.total)
-  let expenses = useSelector((state) => state.expenses[0]);
+  let expenses = useSelector((state) => state.expenses[0]) || [];
   if (testData) {
     userId = testData.user.id;
     expenses = testData.expenses

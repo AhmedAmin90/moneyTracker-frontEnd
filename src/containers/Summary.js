@@ -1,8 +1,11 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Summary.css';
+// import { useSelector } from 'react-redux';
+// import { setTotal } from '../helpers';
 
-const Summary = ({ total = 0 }) => {
+const Summary = ({total = 0}) => {
   const currentDate = new Date(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`).toLocaleString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
   return (
     <div className="Summary">

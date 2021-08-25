@@ -1,7 +1,7 @@
 /* eslint-disable  */
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import {sendExpenseData} from '../helpers'
+import {sendExpenseData, setTotal} from '../helpers'
 import './Filter.css';
 
 const Filter = ({ testData }) => {
@@ -27,9 +27,10 @@ const Filter = ({ testData }) => {
     setValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-  const sendData = ()=> {
-    sendExpenseData(value.expense , itemId)
+  const sendData = async ()=>  {
+    await sendExpenseData(value.expense , itemId)
     input.current.value = '';
+    setTotal(userId);
   };
 
   return (

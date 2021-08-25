@@ -52,6 +52,25 @@ export const createUser = async (e, username, password) => {
 };
 
 
+export const getData = async (selectedId)=>{
+      const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`);
+      const data = await res.data;
+      // store.dispatch(actions.total(data.total))
+      data.items.map((item) => (
+        store.dispatch(actions.items(item))
+      ));
+} 
+
+
+export const setTotal = async (selectedId)=>{
+  const res = await axios.get(`https://pacific-mountain-97932.herokuapp.com/users/${selectedId}`);
+  const data = await res.data;
+  store.dispatch(actions.total(data.total))
+} 
+
+
+
+
 export  const sendExpenseData = async (expense , itemId) => {
   await fetch('https://pacific-mountain-97932.herokuapp.com/api/v1/expenses', {
     method: 'post',
@@ -74,14 +93,7 @@ export const getExpenses = async(userId , itemName = '' )=>{
     expArray.forEach(exp => {
       sum = sum + exp.expense
     });
-    console.log(sum)
     store.dispatch(actions.total(sum))
-
-    // setExpenses(expArray);
-    // setItemId(selectedItem.id);
-    // const sumAll = expenses.map((exp) => sum += exp.expense);
-    // setTotal(sumAll[sumAll.length - 1]);
-
 };
 
 
