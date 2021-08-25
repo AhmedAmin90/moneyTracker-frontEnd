@@ -10,13 +10,14 @@ import './Single.css';
 
 const Single = ({ itemData, testData }) => {
   const { itemName } = itemData.match.params;
-  const savedUserId = localStorage.getItem('userId');
+  let savedUserId = localStorage.getItem('userId');
   const savedItemName = itemName || localStorage.getItem('itemName');
   let userId = useSelector((state) => state.userId);
   const itemId = useSelector((state) => state.itemId);
   const total = useSelector((state) => state.total);
   let expenses = useSelector((state) => state.expenses[0]) || [];
   if (testData) {
+    savedUserId = testData.savedUserId;
     userId = testData.user.id;
     expenses = testData.expenses;
   }

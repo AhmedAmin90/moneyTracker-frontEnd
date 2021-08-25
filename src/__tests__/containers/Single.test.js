@@ -10,6 +10,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('Data for mock', () => {
   const data = {
+    savedUserId: 1,
     user: {
       id: 1, email: '', created_at: '2021-08-19T12:25:14.513Z', updated_at: '2021-08-19T12:25:14.513Z', username: 'ahmed',
     },
