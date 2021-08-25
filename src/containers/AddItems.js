@@ -1,14 +1,11 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createNewItem } from '../helpers';
-import { Redirect , Link , useHistory} from 'react-router-dom';
 
 const AddItems = ({ userId }) => {
-  const history = useHistory();
 
-  const dispatch = useDispatch();
   const errorMsg = useSelector((state) => state.errorMsg);
   const [value, setValue] = useState({
     icons: '',
@@ -16,11 +13,13 @@ const AddItems = ({ userId }) => {
   });
 
   const handleChange = (e) => {
-    setValue((pre) => ({ ...pre, [e.target.name]: e.target.value }));
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const sendData = ()=>{
     createNewItem(value.item , userId, value.icons);
+    document.querySelector('.AddItem-text-input').value = '';
+    setValue((pre) => ({ ...pre, item: '' }));
   }
 
   return (

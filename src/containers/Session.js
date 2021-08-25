@@ -10,7 +10,7 @@ const Session = ({ sendData, text, errorMsg }) => {
   });
 
   const handleChange = (e) => {
-    setIntpu((pre) => ({ ...pre, [e.target.name]: e.target.value }));
+    setIntpu({ ...input, [e.target.name]: e.target.value });
   };
 
   const handleSendData = (e) => {
