@@ -1,0 +1,6 @@
+.AddExpenses , .AddExpenses-empty , .AddExpenses-items{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

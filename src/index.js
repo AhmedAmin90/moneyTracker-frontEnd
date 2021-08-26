@@ -14,7 +14,7 @@ import reportWebVitals from './reportWebVitals';
 import Home from './components/Home';
 import Single from './containers/Single';
 import AddItems from './containers/AddItems';
-import AddExpenses from './components/AddExpenses';
+import AddExpenses from './containers/AddExpenses';
 import { getData, setTotal } from './helpers';
 import * as actions from './actions/index';
 
@@ -43,7 +43,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/home/:id" render={(routeProps) => <Home userData={routeProps} />} />
-        <Route exact path="/addExpenses" render={() => <AddExpenses userId={Number(userId)}/>} />
+        <Route exact path="/addExpenses" render={() => <AddExpenses />} />
         <Route exact path="/addItems" render={() => <AddItems userId={userId} />} />
         <Route exact path="/items/:itemName" render={(routeProps) => <Single itemData={routeProps} />} />
       </Switch>
