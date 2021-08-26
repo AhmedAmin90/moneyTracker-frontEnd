@@ -18,8 +18,9 @@
   font-size: 25px;
 }
 
- .Footer-box-clicked {
+.Footer-box-clicked {
   background-color: #5bb5e5;
+
   /* width: 25%; */
   text-align: center;
   padding-top: 10px;

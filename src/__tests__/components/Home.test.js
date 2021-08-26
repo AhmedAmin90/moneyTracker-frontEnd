@@ -27,7 +27,7 @@ describe('Data for mock', () => {
     render(
       <Provider store={store}>
         <Router>
-          <Home testData={data}/>
+          <Home testData={data} />
         </Router>
       </Provider>,
     );
