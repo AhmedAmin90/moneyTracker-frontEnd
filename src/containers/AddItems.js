@@ -1,16 +1,15 @@
 /* eslint-disable import/no-cycle */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import { createNewItem } from '../helpers';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Summary from './Summary';
 
-const AddItems = ({ userId }) => {
+const AddItems = () => {
   const total = useSelector((state) => state.total);
   const errorMsg = useSelector((state) => state.errorMsg);
-
+  const savedUserId = localStorage.getItem('userId');
   const [value, setValue] = useState({
     icons: '',
     item: '',
@@ -21,7 +20,7 @@ const AddItems = ({ userId }) => {
   };
 
   const sendData = () => {
-    createNewItem(value.item, userId, value.icons);
+    createNewItem(value.item, savedUserId, value.icons);
     document.querySelector('.AddItem-text-input').value = '';
     setValue((pre) => ({ ...pre, item: '' }));
   };
@@ -143,14 +142,6 @@ const AddItems = ({ userId }) => {
       <Footer ClickedBox={3} />
     </div>
   );
-};
-
-AddItems.defaultProps = {
-  userId: '0',
-};
-
-AddItems.propTypes = {
-  userId: PropTypes.string,
 };
 
 export default AddItems;

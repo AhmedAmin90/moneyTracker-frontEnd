@@ -41,7 +41,7 @@ ReactDOM.render(
         <Route exact path="/" component={App} />
         <Route exact path="/home/:id" render={() => <Home />} />
         <Route exact path="/addExpenses" render={() => <AddExpenses />} />
-        <Route exact path="/addItems" render={() => <AddItems userId={userId} />} />
+        <Route exact path="/addItems" render={() => <AddItems />} />
         <Route exact path="/items/:itemName" render={(routeProps) => <Single itemData={routeProps} />} />
       </Switch>
     </BrowserRouter>
