@@ -1,4 +1,3 @@
-/* eslint-disable */
 /* eslint-disable  import/no-cycle , react/jsx-indent , react/display-name */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,16 +24,14 @@ const store = createStore(allReducers,
 export default store;
 const userId = localStorage.getItem('userId');
 window.onload = async () => {
-  if (userId === null || userId === "") {
+  if (userId === null || userId === '') {
     return <Redirect to="/" />;
   }
-  else {
-    store.dispatch(actions.login({ id: userId }));
-    await getData(userId);
-    await setTotal(userId)
-    return <Redirect to={`/home/${userId}`} />;
-  }
 
+  store.dispatch(actions.login({ id: userId }));
+  await getData(userId);
+  await setTotal(userId);
+  return <Redirect to={`/home/${userId}`} />;
 };
 
 ReactDOM.render(
@@ -42,7 +39,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route exact path="/home/:id" render={(routeProps) => <Home userData={routeProps} />} />
+        <Route exact path="/home/:id" render={() => <Home />} />
         <Route exact path="/addExpenses" render={() => <AddExpenses />} />
         <Route exact path="/addItems" render={() => <AddItems userId={userId} />} />
         <Route exact path="/items/:itemName" render={(routeProps) => <Single itemData={routeProps} />} />

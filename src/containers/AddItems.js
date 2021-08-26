@@ -1,32 +1,20 @@
-/*  eslint-disable */
 /* eslint-disable import/no-cycle */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createNewItem } from '../helpers';
-import { getData, setTotal } from '../helpers';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Summary from './Summary';
-import { Redirect } from 'react-router';
-
 
 const AddItems = ({ userId }) => {
   const total = useSelector((state) => state.total);
   const errorMsg = useSelector((state) => state.errorMsg);
-  let itemsList = useSelector((state) => state.items);
-
-//   if (itemsList.length === 0 ){
-//     return <Redirect to={`/home/${userId}`} />;
-// }
 
   const [value, setValue] = useState({
     icons: '',
     item: '',
   });
-
-
-  
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -40,8 +28,8 @@ const AddItems = ({ userId }) => {
 
   return (
     <div className="AddItem">
-        <Header />
-        <Summary total={total} />
+      <Header />
+      <Summary total={total} />
       <form className="AddItem-form">
         <p className="error-msg">{errorMsg}</p>
         <input className="AddItem-text-input" type="text" name="item" onChange={handleChange} placeholder="Item Name" />
@@ -152,7 +140,7 @@ const AddItems = ({ userId }) => {
 
       <button type="button" className="AddItem-btn" onClick={sendData}>Add item</button>
 
-    <Footer />
+      <Footer ClickedBox={3} />
     </div>
   );
 };

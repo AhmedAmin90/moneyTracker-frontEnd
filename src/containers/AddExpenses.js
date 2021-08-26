@@ -1,38 +1,41 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import Summary from './Summary';
 import Footer from '../components/Footer';
 import Filter from './Filter';
-import './AddExpenses.css'
+import './AddExpenses.css';
 
 const AddExpenses = () => {
-    const total = useSelector((state) => state.total);
-    let itemsList = useSelector((state) => state.items);
+  const total = useSelector((state) => state.total);
+  const itemsList = useSelector((state) => state.items);
 
-    const render = itemsList.length > 0 ? <div className="AddExpenses-items">
-    <div>
-    <Header />
-    <Summary total={total} />
+  const render = itemsList.length > 0 ? (
+    <div className="AddExpenses-items">
+      <div>
+        <Header />
+        <Summary total={total} />
+      </div>
+      <Filter />
+      <Footer ClickedBox={1} />
     </div>
-    <Filter />
-    <Footer />
-</div> :   
-<div className="AddExpenses-empty">
-    <div>
-    <Header />
-    <Summary total={total} />
+  ) : (
+    <div className="AddExpenses-empty">
+      <div>
+        <Header />
+        <Summary total={total} />
+      </div>
+      <h1 className="Home-add-item"> Please Add Items first !</h1>
+      <Footer ClickedBox={1} />
     </div>
-    <h1 className="Home-add-item"> Please Add Items first !</h1>
-    <Footer />
-    </div>
+  );
 
-    return (
-        <div className="AddExpenses">
-            {render}
-        </div>
-    )
-}
+  return (
+    <div className="AddExpenses">
+      {render}
+    </div>
+  );
+};
 
-export default AddExpenses
+export default AddExpenses;

@@ -24,15 +24,10 @@ describe('Data for mock', () => {
   };
 
   beforeEach(() => {
-    const routeComponentPropsMock = {
-      history: {},
-      location: {},
-      match: { params: { id: 1 } },
-    };
     render(
       <Provider store={store}>
         <Router>
-          <Home testData={data} userData={routeComponentPropsMock} />
+          <Home testData={data}/>
         </Router>
       </Provider>,
     );

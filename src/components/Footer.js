@@ -1,18 +1,17 @@
-/* eslint-disable */
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../actions/index';
 import Box from '../containers/Box';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ ClickedBox = 2 }) => {
   const dispatch = useDispatch();
-  const contentId = useSelector((state) => state.contentId);
   const savedUserId = localStorage.getItem('userId');
 
   const [boxes, setBoxes] = useState([
     {
-      id: 1, icon: 'fas fa-chart-bar', text: 'Add Expenses', clicked: false, path:'/addExpenses',
+      id: 1, icon: 'fas fa-chart-bar', text: 'Add Expenses', clicked: false, path: '/addExpenses',
     },
     {
       id: 2, icon: 'fas fa-chart-line', text: 'Track Expenses', clicked: false, path: `/home/${savedUserId}`,
@@ -25,16 +24,19 @@ const Footer = () => {
     },
   ]);
 
+  useEffect(() => {
+    const selectedBox = boxes.find((box) => box.id === ClickedBox);
+    selectedBox.clicked = !selectedBox.clicked;
+    const otherBoxes = boxes.filter((box) => box.id !== ClickedBox);
+    otherBoxes.forEach((box) => {
+      const anotherBox = box;
+      anotherBox.clicked = false;
+    });
+    setBoxes([...boxes]);
+  }, []);
+
   const handleClicke = (id) => {
     dispatch(actions.content(id));
-    // const selectedBox = boxes.find((box) => box.id === contentId);
-    // selectedBox.clicked = !selectedBox.clicked;
-    // const otherBoxes = boxes.filter((box) => box.id !== contentId);
-    // otherBoxes.forEach((box) => {
-    //   const anotherBox = box;
-    //   anotherBox.clicked = false;
-    // });
-    // setBoxes([...boxes]);
   };
 
   const renderBoxes = boxes.map((box) => (
@@ -51,6 +53,14 @@ const Footer = () => {
       {renderBoxes}
     </div>
   );
+};
+
+Footer.defaultProps = {
+  ClickedBox: 2,
+};
+
+Footer.propTypes = {
+  ClickedBox: PropTypes.number,
 };
 
 export default Footer;

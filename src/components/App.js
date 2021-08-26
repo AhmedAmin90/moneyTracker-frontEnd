@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './App.css';
 import * as actions from '../actions/index';
-import Footer from './Footer';
 import Session from '../containers/Session';
 import Header from './Header';
 import * as helpers from '../helpers';
@@ -12,21 +11,12 @@ import * as helpers from '../helpers';
 const App = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.userId);
-  const contentId = useSelector((state) => state.contentId);
   const errorMsg = useSelector((state) => state.errorMsg);
   const savedUserId = localStorage.getItem('userId');
 
   const [login, setLogin] = useState('Sign In');
 
-  if (contentId === 1) {
-    dispatch(actions.error('Please Sing in firstly to Add expenses'));
-  } else if (contentId === 3) {
-    dispatch(actions.error('Please Sing in firstly to Add Items'));
-  } else if (contentId === 4) {
-    dispatch(actions.error('You did not logged yet , please try our application :) '));
-  }
-
-  if (userId) {
+  if (savedUserId) {
     return <Redirect to={`/home/${userId}`} />;
   }
 
@@ -43,7 +33,6 @@ const App = () => {
       <div>
         {loginBtn}
       </div>
-      <Footer />
     </div>
   );
   const renderData = savedUserId === null || savedUserId === '' ? app : <Redirect to={`/home/${savedUserId}`} />;
