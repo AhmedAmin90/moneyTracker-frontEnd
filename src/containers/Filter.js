@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle , react/prop-types */
+/* eslint-disable */
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { sendExpenseData, setTotal } from '../helpers';
@@ -19,8 +20,9 @@ const Filter = ({ testData }) => {
   const input = useRef();
 
   useEffect(() => {
-    const selectedItem = itemsList.find((item) => item.name === value.item);
-    setItemId(selectedItem.id);
+
+      const selectedItem =  itemsList.find((item) => item.name === value.item);
+      setItemId(selectedItem.id);
   });
 
   const handleChange = (e) => {

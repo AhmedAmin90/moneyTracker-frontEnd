@@ -1,5 +1,5 @@
 /* eslint-disable  import/no-cycle , react/prop-types, consistent-return */
-
+/*  eslint-disable  */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
@@ -30,27 +30,27 @@ const Home = ({ userData, testData = false }) => {
   const selectedId = userData.match.params.id;
   const contentId = useSelector((state) => state.contentId);
 
-  useEffect(() => {
-    if (itemsList.length !== 0) {
-      return;
-    }
-    if (!testData) {
-      getData(savedUserId);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (itemsList.length !== 0) {
+  //     return;
+  //   }
+  //   if (!testData) {
+  //     getData(savedUserId);
+  //   }
+  // }, []);
 
-  const addMeasurment = itemsList.length !== 0 ? (
-    <div>
-      {' '}
-      <Filter />
-      {' '}
-    </div>
-  ) : (
-    <div>
+  // const addMeasurment = itemsList.length !== 0 ? (
+  //   <div>
+  //     {' '}
+  //     <Filter />
+  //     {' '}
+  //   </div>
+  // ) : (
+  //   <div>
 
-      <h1 className="Home-add-item"> Please Add Items first !</h1>
-    </div>
-  );
+  //     <h1 className="Home-add-item"> Please Add Items first !</h1>
+  //   </div>
+  // );
   const instructions = (
     <div>
 
@@ -86,21 +86,21 @@ const Home = ({ userData, testData = false }) => {
   const itemsPresence = itemsList.length > 0 ? renderItems : instructions;
 
   const renderContent = () => {
-    if (contentId === 1) {
-      return addMeasurment;
-    }
+    // if (contentId === 1) {
+    //   return addMeasurment;
+    // }
     if (contentId === 2) {
       setTotal(savedUserId);
       return itemsPresence;
     }
-    if (contentId === 3) {
-      return (
-        <div>
-          <h1 className="Home-add-item">Add New Item</h1>
-          <AddItems userId={selectedId} />
-        </div>
-      );
-    }
+    // if (contentId === 3) {
+    //   return (
+    //     <div>
+    //       <h1 className="Home-add-item">Add New Item</h1>
+    //       <AddItems userId={selectedId} />
+    //     </div>
+    //   );
+    // }
     if (contentId === 4) {
       localStorage.setItem('userId', '');
       localStorage.setItem('itemName', '');

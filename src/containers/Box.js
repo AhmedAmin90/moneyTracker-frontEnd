@@ -1,5 +1,7 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Box = ({ box, handleClickBox }) => {
   const handleClick = () => {
@@ -9,12 +11,13 @@ const Box = ({ box, handleClickBox }) => {
   const isClickedArrow = box.clicked ? 'arrow-hidden-div' : '';
 
   return (
-
+<Link to={box.path}>
     <div key={box.id} className={isClickedBox} tabIndex={0} onClick={handleClick} role="button" onKeyDown={handleClick}>
       <div className={isClickedArrow} />
       <i className={box.icon} />
       <p>{box.text}</p>
     </div>
+</Link>
 
   );
 };

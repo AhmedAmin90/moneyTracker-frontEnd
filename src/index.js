@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable  import/no-cycle , react/jsx-indent , react/display-name */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,6 +13,9 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import Home from './components/Home';
 import Single from './containers/Single';
+import AddItems from './containers/AddItems';
+import AddExpenses from './components/AddExpenses';
+import { getData, setTotal } from './helpers';
 import * as actions from './actions/index';
 
 const store = createStore(allReducers,
@@ -19,15 +23,18 @@ const store = createStore(allReducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;
-
-window.onload = () => {
-  const userId = localStorage.getItem('userId');
-  if (userId === null) {
+const userId = localStorage.getItem('userId');
+window.onload = async () => {
+  if (userId === null || userId === "") {
     return <Redirect to="/" />;
   }
+  else {
+    store.dispatch(actions.login({ id: userId }));
+    await getData(userId);
+    await setTotal(userId)
+    return <Redirect to={`/home/${userId}`} />;
+  }
 
-  store.dispatch(actions.login({ id: userId }));
-  return <Redirect to={`/home/${userId}`} />;
 };
 
 ReactDOM.render(
@@ -36,6 +43,8 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/home/:id" render={(routeProps) => <Home userData={routeProps} />} />
+        <Route exact path="/addExpenses" render={() => <AddExpenses userId={Number(userId)}/>} />
+        <Route exact path="/addItems" render={() => <AddItems userId={userId} />} />
         <Route exact path="/items/:itemName" render={(routeProps) => <Single itemData={routeProps} />} />
       </Switch>
     </BrowserRouter>

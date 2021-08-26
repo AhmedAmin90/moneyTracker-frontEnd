@@ -1,37 +1,40 @@
+/* eslint-disable */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../actions/index';
 import Box from '../containers/Box';
 import './Footer.css';
 
 const Footer = () => {
   const dispatch = useDispatch();
+  const contentId = useSelector((state) => state.contentId);
+  const savedUserId = localStorage.getItem('userId');
 
   const [boxes, setBoxes] = useState([
     {
-      id: 1, icon: 'fas fa-chart-bar', text: 'Add Expenses', clicked: false,
+      id: 1, icon: 'fas fa-chart-bar', text: 'Add Expenses', clicked: false, path:'/addExpenses',
     },
     {
-      id: 2, icon: 'fas fa-chart-line', text: 'Track Expenses', clicked: true,
+      id: 2, icon: 'fas fa-chart-line', text: 'Track Expenses', clicked: false, path: `/home/${savedUserId}`,
     },
     {
-      id: 3, icon: 'fas fa-chart-pie', text: 'Add Items', clicked: false,
+      id: 3, icon: 'fas fa-chart-pie', text: 'Add Items', clicked: false, path: '/addItems',
     },
     {
-      id: 4, icon: 'fas fa-sign-out-alt', text: 'Sign out', clicked: false,
+      id: 4, icon: 'fas fa-sign-out-alt', text: 'Sign out', clicked: false, path: '/',
     },
   ]);
 
   const handleClicke = (id) => {
-    const selectedBox = boxes.find((box) => box.id === id);
-    selectedBox.clicked = !selectedBox.clicked;
     dispatch(actions.content(id));
-    const otherBoxes = boxes.filter((box) => box.id !== id);
-    otherBoxes.forEach((box) => {
-      const anotherBox = box;
-      anotherBox.clicked = false;
-    });
-    setBoxes([...boxes]);
+    // const selectedBox = boxes.find((box) => box.id === contentId);
+    // selectedBox.clicked = !selectedBox.clicked;
+    // const otherBoxes = boxes.filter((box) => box.id !== contentId);
+    // otherBoxes.forEach((box) => {
+    //   const anotherBox = box;
+    //   anotherBox.clicked = false;
+    // });
+    // setBoxes([...boxes]);
   };
 
   const renderBoxes = boxes.map((box) => (

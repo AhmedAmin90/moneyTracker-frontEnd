@@ -2,22 +2,25 @@
   display: flex;
 }
 
-.Footer-box {
+.Footer a {
   width: 25%;
   text-align: center;
-  padding-top: 10px;
   background-color: #323943;
   color: #b4b9bf;
   cursor: pointer;
+}
+
+.Footer-box {
+  padding-top: 10px;
 }
 
 .Footer-box > i {
   font-size: 25px;
 }
 
-.Footer-box-clicked {
+ .Footer-box-clicked {
   background-color: #5bb5e5;
-  width: 25%;
+  /* width: 25%; */
   text-align: center;
   padding-top: 10px;
   color: white;
