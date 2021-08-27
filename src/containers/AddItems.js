@@ -10,19 +10,17 @@ const AddItems = () => {
   const total = useSelector((state) => state.total);
   const errorMsg = useSelector((state) => state.errorMsg);
   const savedUserId = localStorage.getItem('userId');
-  const [value, setValue] = useState({
-    icons: '',
-    item: '',
-  });
+  const [icon, setIcon] = useState('');
+  const [item, setItem] = useState('');
 
   const handleChange = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    setIcon(e.target.value);
   };
 
   const sendData = () => {
-    createNewItem(value.item, savedUserId, value.icons);
+    createNewItem(item, savedUserId, icon);
     document.querySelector('.AddItem-text-input').value = '';
-    setValue((pre) => ({ ...pre, item: '' }));
+    setItem('');
   };
 
   return (
@@ -31,7 +29,7 @@ const AddItems = () => {
       <Summary total={total} />
       <form className="AddItem-form">
         <p className="error-msg">{errorMsg}</p>
-        <input className="AddItem-text-input" type="text" name="item" onChange={handleChange} placeholder="Item Name" />
+        <input className="AddItem-text-input" type="text" name="item" onChange={(e) => setItem(e.target.value)} value={item} placeholder="Item Name" />
         <div className="AddItem-form-icons">
           <div className="Icon-wrap">
             <input onChange={handleChange} type="radio" name="icons" value="fas fa-passport" />
