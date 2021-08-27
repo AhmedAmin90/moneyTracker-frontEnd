@@ -10,14 +10,13 @@ import * as helpers from '../helpers';
 
 const App = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.userId);
   const errorMsg = useSelector((state) => state.errorMsg);
   const savedUserId = localStorage.getItem('userId');
 
   const [login, setLogin] = useState('Sign In');
 
   if (savedUserId) {
-    return <Redirect to={`/home/${userId}`} />;
+    return <Redirect to={`/home/${savedUserId}`} />;
   }
 
   const handleClick = ({ target }) => {
