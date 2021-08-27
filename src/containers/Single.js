@@ -23,9 +23,6 @@ const Single = ({ itemData, testData }) => {
   }
 
   const [expense, setExpense] = useState(0);
-  const handleChange = (e) => {
-    setExpense(e.target.value);
-  };
 
   if (!savedUserId) {
     return <Redirect to="/" />;
@@ -57,7 +54,7 @@ const Single = ({ itemData, testData }) => {
       <div data-testid="single-form" className="Single-form">
         <form className="Filter-form">
           <h1 className="Home-add-item">Add Another expense: </h1>
-          <input type="number" name="expense" min="0" onChange={handleChange} placeholder="0" />
+          <input type="number" name="expense" min="0" onChange={(e) => setExpense(e.target.value)} placeholder="0" />
         </form>
 
         <button type="button" className="Add-expense-btn" onClick={sendData}>Add New Expense</button>
