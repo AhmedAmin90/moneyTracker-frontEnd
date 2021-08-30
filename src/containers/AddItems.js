@@ -24,8 +24,10 @@ const AddItems = () => {
 
   return (
     <div className="AddItem">
-      <Header />
-      <Summary total={total} />
+      <div>
+        <Header />
+        <Summary total={total} />
+      </div>
       <form className="AddItem-form">
         <p className="error-msg">{errorMsg}</p>
         <input className="AddItem-text-input" type="text" name="item" onChange={(e) => setItem(e.target.value)} value={item} placeholder="Item Name" />
