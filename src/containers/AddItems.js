@@ -19,7 +19,6 @@ const AddItems = () => {
 
   const sendData = () => {
     createNewItem(item, savedUserId, icon);
-    document.querySelector('.AddItem-text-input').value = '';
     setItem('');
   };
 

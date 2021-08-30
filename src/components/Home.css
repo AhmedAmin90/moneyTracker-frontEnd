@@ -26,6 +26,7 @@
 .AddItem {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .AddItem-form {
