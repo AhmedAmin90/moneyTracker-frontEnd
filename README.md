@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+# Money Tracker Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ 
+> This is a Final capstone project in Microverse. This is a money tracker application for tracking expenses for unlimited items for each user.  
 
-## Available Scripts
+# In this application:
+- The user can create an account with only a username and password.
+- After creating an account, the user will find instructions on who to add new items.
+- The user can start adding items and things that (he/she) needs to track expenses on this item. For example transportation, restaurants, kids .. etc.
+- The user dashboard contains a list of all items that the user-created when the user clicks on this item the user will introduce to a single page of each item with all expenses with the date of each expense.
+- The user can add another expense from two places: Add expenses page which the user will find a list of all items and (he/she) will select the item and add the expense or from the single page.
+- At the top of each page the user will find the total of all expenses.
 
-In the project directory, you can run:
 
-### `yarn start`
+# Login screen:
+![screenshot](src/assets/login.png) 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![screenshot](src/assets/login-two.png) 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Dashboard:
 
-### `yarn test`
+1. Instructions:
+- ![screenshot](src/assets/instructions.png) 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+2. After adding items:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ![screenshot](src/assets/dashboard.png) 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Add items page:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![screenshot](src/assets/add-items.png) 
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Add expenses page:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![screenshot](src/assets/add-expense.png) 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Single page of items:
 
-## Learn More
+![screenshot](src/assets/single-item.png) 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Live Version:
+[Money Tracker App](https://money-tracker-amin-div.herokuapp.com/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Built With
+1. Front-End:
+- React.
+- JS.
+- CSS.
+- Jest.
+- React test library.
 
-### Analyzing the Bundle Size
+2. Back-End:
+- Ruby on Rails API.
+- Ruby.
+- Postgresql.
+- RSpec.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. To run this project locally, please ensure you have npm installed.
+2. Open the terminal.
+3. Clone this repository by running:
 
-### Advanced Configuration
+```bash
+git clone https://github.com/AhmedAmin90/moneyTracker-frontEnd
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. To install the dependencies Open your terminal at the project folder: 
 
-### Deployment
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+5. Start the server :
 
-### `yarn build` fails to minify
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5.To run tests:
+
+```bash
+npm run test
+```
+
+# Notes:
+1. I followed the design:
+https://www.behance.net/gallery/13271423/Bodytrackit-An-iOs-app-Branding-UX-and-UI
+Design idea by Gregoire Vella on Behance
+
+2. Responsive Design:
+- Tablet:
+![screenshot](src/assets/tablet.png) 
+
+- Laptop:
+![screenshot](src/assets/lap.png) 
+
+
+
+## Authors
+
+**Ahmed Amin** 
+- GitHub: [Profile](https://github.com/AhmedAmin90)
+- LinkedIn: [Profile](https://www.linkedin.com/in/web-developer/)
+- AngelList: [Profile](https://angel.co/u/ahmed-amin-22)
+- Twitter: [Profile](https://twitter.com/AhmedAmin12383)
+- Portfolio: [My Portfolio](https://amin-dev-me.netlify.app/)
+
+
+
+## Contribute
+Any advice and suggestion for improvement are more than welcome.
+Visit [issues' section](https://github.com/AhmedAmin90/moneyTracker-frontEnd/issues)
+
+## Show your support
+Give a star if you like this project!
+
+## License
+<p>This project is <a href="./LICENSE">MIT</a> licensed.</p>

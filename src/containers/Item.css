@@ -1,0 +1,38 @@
+.Item {
+  padding: 20px;
+  background-color: #fdfdfd;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
+  width: 200px;
+  height: auto;
+  margin: 20px;
+  color: #5b8092;
+  font-size: 10px;
+}
+
+.Item > i {
+  color: #42b5e8;
+  font-size: 40px;
+}
+
+@media screen and (max-width: 992px) {
+  .Item {
+    padding: 10px;
+    font-size: 7px;
+    width: 130px;
+    margin: 5px;
+  }
+
+  .Item > i {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Item {
+    width: 110px;
+  }
+}

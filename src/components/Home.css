@@ -1,0 +1,117 @@
+.Home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Home-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.Home-items-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.Home-add-item {
+  text-align: center;
+  color: #758086;
+}
+
+.AddItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.AddItem-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AddItem-text-input {
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.AddItem-form-icons {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  justify-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #323943;
+  padding: 5px;
+  margin: 10px;
+}
+
+.Icon-wrap {
+  display: flex;
+  justify-items: flex-start;
+  align-items: center;
+  width: 20%;
+  margin: 10px 0;
+}
+
+.Icon-wrap > i {
+  font-size: 30px;
+  margin: 0 5px;
+  color: #5bb5e5;
+}
+
+.Add-measurement {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.instructions-list {
+  width: 50%;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+.instructions-list > li {
+  margin: 10px 0;
+  color: #323943;
+  font-weight: bold;
+}
+
+.intro-paragraph {
+  color: #323943;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+  .Home-items-div {
+    justify-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .intro-paragraph {
+    font-size: 15px;
+  }
+
+  .AddItem-form-icons {
+    width: 90%;
+  }
+
+  .Icon-wrap {
+    width: 25%;
+    margin: 5px 0;
+  }
+
+  .Icon-wrap > i {
+    font-size: 20px;
+  }
+}
