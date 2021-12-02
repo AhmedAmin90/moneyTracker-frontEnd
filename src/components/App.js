@@ -25,7 +25,7 @@ const App = () => {
     dispatch(actions.error(''));
   };
 
-  const loginBtn = login === 'Sign In' ? <Session sendData={helpers.sendUserData} errorMsg={errorMsg} text="Sign in - Track your expenses now !" /> : <Session sendData={helpers.createUser} errorMsg={errorMsg} text="Sign up with us - Track your expenses now !" />;
+  const loginBtn = login === 'Sign In' ? <Session sendData={helpers.sendUserData} errorMsg={errorMsg} text="Sign in - this is from online - Track your expenses now !" /> : <Session sendData={helpers.createUser} errorMsg={errorMsg} text="Sign up with us - Track your expenses now !" />;
   const app = (
     <div className="App-sign">
       <Header />
